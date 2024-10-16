@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <footer className="relative z-10 bg-white dark:bg-gray-dark bg-[url('/images/footer/01.jpg')] bg-cover bg-center bg-no-repeat">
-        <div className="backdrop-blur-lg dark:bg-gray-dark pt-16 md:pt-20 lg:pt-24">
+        <div className="backdrop-blur-lg bg-white/60 dark:bg-gray-dark pt-16 md:pt-20 lg:pt-24">
           <div className="container">
             <div className="-mx-4 flex flex-wrap">
               <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">

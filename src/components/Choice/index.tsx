@@ -17,7 +17,7 @@ const Choice = () => {
                     Our Commitment to Excellence
                   </h1>
                   <p className="text-base !leading-relaxed text-white sm:text-lg md:text-xl">
-                    We prioritize our clients's needs above all else. By actively listening to your feedback and understanding your goals, we tailor our services to create solutions that truly resonate with your audience.
+                    We prioritize our clients&lsquo;s needs above all else. By actively listening to your feedback and understanding your goals, we tailor our services to create solutions that truly resonate with your audience.
                   </p>
                   {/* <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                     

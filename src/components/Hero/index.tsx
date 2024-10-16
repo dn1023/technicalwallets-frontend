@@ -19,7 +19,7 @@ const Hero = () => {
                   Architectural Digital Products
                 </div>
                 <div className="w-full text-center px-5 py-10 font-bold leading-tight backdrop-blur-sm text-black dark:text-white md:text-amber-500 sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  LET'S BUILD YOUR DREAM<br/>
+                  LET&apos;S BUILD YOUR DREAM<br/>
                   OF HAVING A HOME
                 </div>
                 <p className="w-full mb-12 !leading-relaxed dark:text-body-color-dark text-black md:text-black sm:text-lg md:text-xl">

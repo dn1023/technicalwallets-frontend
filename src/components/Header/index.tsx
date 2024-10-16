@@ -477,7 +477,7 @@ const Header = () => {
                               href="/#offers"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
-                              Furniture's
+                              Furniture&lsquo;s
                             </Link>
                             <Link
                               href="/#offers"
@@ -546,7 +546,7 @@ const Header = () => {
                                 href="/#offers"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
-                                Assemblies Toy's
+                                Assemblies Toy&apos;s
                               </Link>
                             </>
                           }
@@ -568,7 +568,7 @@ const Header = () => {
                                 href="/#offers"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
-                                Equipment's
+                                Equipment&apos;s
                               </Link>
                             </>
                           }
