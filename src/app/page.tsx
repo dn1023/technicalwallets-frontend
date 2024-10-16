@@ -1,6 +1,3 @@
-import Solution from "@/components/About/Solution";
-import Delivery from "@/components/About/Delivery";
-import Support from "@/components/About/Support";
 import Blog from "@/components/Blog";
 import Brands from "@/components/Brands";
 import ScrollUp from "@/components/Common/ScrollUp";
@@ -12,7 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
 import Choice from "@/components/Choice";
 import Offers from "@/components/Offers";
-import Services from "@/components/Services";
+import Products from "@/components/Products";
 import Choose from "@/components/Choose";
 import { Metadata } from "next";
 
@@ -28,22 +25,20 @@ export default function Home() {
       <ScrollUp />
       <Hero />
       <Features />
-      <Services />
+      <Products />
       <Offers />
       <Choose/>
       <Video />
       <Choice />
-      <Solution />
-      <Delivery />
-      <Support />
       {/* <Video />
       <Brands />
       <AboutSectionOne />
       <AboutSectionTwo /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       {/* <Pricing />
       <Blog />
       <Contact /> */}
+      <Contact />
     </>
   );
 }

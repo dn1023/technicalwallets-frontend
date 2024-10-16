@@ -13,11 +13,29 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const Header = () => {
+  
   // Navbar toggle
   const router = useRouter();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [logined, setLogined] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [status, setStatus] = useState([false, false, false]);
+  const [catalog, setCatalog] = useState([false, false, false, false, false, false]);
+  const [convert, setConvert] = useState([false, false, false]);
+  const [Prepare, setPrepare] = useState([false, false, false]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (status && !event.target.closest('#navbarCollapse')) {
+        setStatus([false, false, false]);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [status]);
+
 
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
@@ -74,10 +92,15 @@ const Header = () => {
     else
       router.push('/order');
   } */
+/*   const onChangeStatue = (index: number) => {
+    index == 2 && setStatus([false, false, !status[2], false, false, false, false]);
+    index == 3 && setStatus([false, false, false, !status[3], false, false, false]);
+    index == 4 && setStatus([false, false, false, false, !status[4], false, false]);
+  } */
 
   return (
     <>
-      <div className="bg-[#00c6ff] dark:bg-gray-dark hidden lg:block">
+      {/* <div className="bg-[#00c6ff] dark:bg-gray-dark hidden lg:block">
         <div className="w-full flex items-center justify-between py-[10px] container">
           <div className="flex items-center justify-start space-x-2">
             <div className="w-[40px] h-[40px] flex items-center justify-center bg-lime-500 rounded-full">
@@ -158,9 +181,9 @@ const Header = () => {
           </div>
         </div>      
       </div>
+      
       <div className={`${sticky ? "h-[60px]" : ""}`}>
-
-      </div>
+      </div> */}
       <header
         className={`header left-0 z-40 flex flex-col w-full items-center ${sticky
           ? "top-0 dark:bg-gray-dark dark:shadow-sticky-dark fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
@@ -169,26 +192,26 @@ const Header = () => {
       >
         {/*I removed absolute*/}
         <div className="container">
-          <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-80 max-w-full px-4 xl:mr-12">
+          <div className="relative -mx-4 flex items-center justify-left">
+            <div className="w-50 max-w-full px-4 xl:mr-12">
               <Link
                 href="/"
                 className={`header-logo block w-full ${sticky ? "py-5 lg:py-2" : "py-8"
                   } `}
               >
-                <Image
+                {/* <Image
                   src="/images/logo/logo-2.png"
                   alt="logo"
-                  width={140}
-                  height={30}
+                  width={122}
+                  height={96}
                   className="w-full dark:hidden"
-                />
+                /> */}
                 <Image
                   src="/images/logo/logo.png"
                   alt="logo"
-                  width={140}
-                  height={30}
-                  className="hidden w-full dark:block"
+                  width={40}
+                  height={32}
+                  className=""
                 />
               </Link>
             </div>
@@ -213,6 +236,7 @@ const Header = () => {
                       }`}
                   />
                 </button>
+                
                 <nav
                   id="navbarCollapse"
                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${navbarOpen
@@ -228,31 +252,6 @@ const Header = () => {
                       >
                         Home
                       </Link>
-
-                    </li>
-                    <li className="group relative">
-                      <Link
-                        href="/#features"
-                        className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                      >
-                        Feature
-                      </Link>
-                    </li>
-                    <li className="group relative">
-                      <Link
-                        href="/#offers"
-                        className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                      >
-                        Offer
-                      </Link>
-                    </li>
-                    <li className="group relative">
-                      <Link
-                        href="/#services"
-                        className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                      >
-                        Service
-                      </Link>
                     </li>
                     <li className="group relative">
                       <Link
@@ -262,61 +261,485 @@ const Header = () => {
                         About
                       </Link>
                     </li>
-                    {menuData.map((menuItem, index) => (
+                    {/* {menuData.map((menuItem, index) => (
                       <li key={index} className="group relative">
-                        {menuItem.path ? (
-                          <>
-                            {/* <Link
-                            href={"menuItem.path"}
-                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${usePathName === menuItem.path
-                              ? "text-primary dark:text-white"
-                              : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              }`}
-                          >
-                            {menuItem.title}
-                          </Link> */}
-                          </>
-                        ) : (
-                          <>
-                            {/* <p
-                              onClick={() => handleSubmenu(index)}
-                              className="flex cursor-pointer items-center justify-between py-2 text-base text-dark group-hover:text-primary dark:text-white/70 dark:group-hover:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
+                        <button
+                          onClick={() => onChangeStatue(menuItem.index)}
+                          className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          {menuItem.title}&nbsp;&nbsp;
+                          {
+                            status[menuItem.index] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                          }
+                        </button>
+                        <div className={`${status[menuItem.index] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
+                          {menuItem.submenu.map((menuSubItem, index) => (
+                            <button
+                              onClick={() => setCatalog([!catalog[0], false, false, false, false, false])}
+                              className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
-                              {menuItem.title}
-                              <span className="pl-3">
-                                <svg width="25" height="24" viewBox="0 0 25 24">
-                                  <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M6.29289 8.8427C6.68342 8.45217 7.31658 8.45217 7.70711 8.8427L12 13.1356L16.2929 8.8427C16.6834 8.45217 17.3166 8.45217 17.7071 8.8427C18.0976 9.23322 18.0976 9.86639 17.7071 10.2569L12 15.964L6.29289 10.2569C5.90237 9.86639 5.90237 9.23322 6.29289 8.8427Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </span>
-                            </p>
-                            <div
-                              className={`submenu relative left-0 top-full rounded-sm bg-white transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${openIndex === index ? "block" : "hidden"
-                                }`}
-                            >
-                              {menuItem.submenu.map((submenuItem, index) => (
-                                <Link
-                                  href={submenuItem.path}
-                                  key={index}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
-                                >
-                                  {submenuItem.title}
-                                </Link>
-                              ))}
-                            </div> */}
-                          </>
-                        )}
+                              <p>{menuSubItem.title}</p>&nbsp;&nbsp;
+                              {
+                              catalog[0] ? 
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                              }
+                              {
+                                catalog[0] &&
+                                <>
+                                  {menuSubItem.submenu.map((menuSubSubItem, index) => (
+                                    <Link
+                                      key={index}
+                                      href="/#offers"
+                                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                                    >
+                                      {menuSubSubItem.title}
+                                    </Link>
+                                  ))}
+                                </>
+                              }
+                            </button>
+                          ))}
+                          
+                        </div>
                       </li>
-                    ))}
+                    ))} */}
+                    <li className="group relative">
+                      <button
+                        onClick={() => setStatus([!status[0], false, false])}
+                        className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                      >
+                        Design Catalog&nbsp;&nbsp;
+                        {
+                          status[0] ? 
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        }
+                        </button>
+                        <div className={`${status[0] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col max-h-[500px] overflow-auto`}>
+                          <button
+                            onClick={() => setCatalog([!catalog[0], false, false, false, false, false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Architecture Design</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {
+                            catalog[0] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            catalog[0] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                House
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Villa
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Palace
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Comm./Resid. Towers
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Residential Buildings
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Commercial Buildings
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Hotels
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                GYM & SPA
+                              </Link>
+                            </>
+                          }
+                          <button
+                            onClick={() => setCatalog([false, !catalog[1], false, false, false, false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            Landscape Design&nbsp;&nbsp;
+                            {
+                            catalog[1] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                          catalog[1] &&
+                          <>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Parks
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Streetscape
+                            </Link>
+                          </>
+                          }
+                          <button
+                            onClick={() => setCatalog([false, false, !catalog[2], false, false, false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            Industrial Design&nbsp;&nbsp;
+                            {
+                            catalog[2] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                          catalog[2] &&
+                          <>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Tiny Houses
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Portable Houses
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              RV / Camper
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Tent
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Tiny Restaurant/Cafe
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Portable Truck Food/Cafe
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Portable Ice Cream
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Kiosks/Exhibition
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Furniture's
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Lights
+                            </Link>
+                            <Link
+                              href="/#offers"
+                              className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            >
+                              Art/Decoration
+                            </Link>
+                          </>
+                          }
+                         
+                          <button
+                            onClick={() => setCatalog([false, false, false, !catalog[3], false, false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            Marine Design&nbsp;&nbsp;
+                            {
+                            catalog[3] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            catalog[3] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Floating Houses
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Floating Restaurant/Cafe
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Yacht/Boat
+                              </Link>
+                            </>
+                          }
+                          <button
+                            onClick={() => setCatalog([false, false, false, false, !catalog[4], false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            Products Design&nbsp;&nbsp;
+                            {
+                            catalog[4] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            catalog[4] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Assemblies Toy's
+                              </Link>
+                            </>
+                          }
+                          <button
+                            onClick={() => setCatalog([false, false, false, false, false, !catalog[5]])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            Prototype Design&nbsp;&nbsp;
+                            {
+                            catalog[5] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            catalog[5] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Equipment's
+                              </Link>
+                            </>
+                          }
+                        </div>
+                    </li>
+                    <li className="group relative">
+                      <button
+                        onClick={() => setStatus([false, !status[1], false])}
+                        className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                      >
+                        Design Convert&nbsp;&nbsp;
+                        {
+                          status[1] ? 
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        }
+                        </button>
+                        <div className={`${status[1] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
+                          <button
+                            onClick={() => setConvert([!convert[0], false, false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Conceptual Design</p>&nbsp;&nbsp;
+                            {
+                            convert[0] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            convert[0] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Blueprints
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                3D Animation
+                              </Link>
+                            </>
+                          }
+                          <button
+                            onClick={() => setConvert([false, !convert[1],  false])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Blueprints</p>&nbsp;&nbsp;
+                            {
+                            convert[1] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            convert[1] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                3D Visualization
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                3D Animation
+                              </Link>
+                            </>
+                          }
+                          <button
+                            onClick={() => setConvert([false, false, !convert[2]])}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Hand Sketch</p>&nbsp;&nbsp;
+                            {
+                            convert[2] ? 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                            }
+                          </button>
+                          {
+                            convert[2] &&
+                            <>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Conceptual Design
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                Blueprints
+                              </Link>
+                              <Link
+                                href="/#offers"
+                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              >
+                                3D Animation
+                              </Link>
+                            </>
+                          }
+                        </div>
+                    </li>
+                    <li className="group relative">
+                      <button
+                        onClick={() => setStatus([false, false, !status[2]])}
+                        className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                      >
+                        Drawing Prepare&nbsp;&nbsp;
+                        {
+                          status[2] ? 
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        }
+                        </button>
+                        <div className={`${status[2] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
+                          <button
+                            onClick={() => {}}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Shop Drawing</p>&nbsp;&nbsp;
+                          </button>
+                          <button
+                            onClick={() => {}}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Constructions Drawing</p>&nbsp;&nbsp;
+                          </button>
+                          <button
+                            onClick={() => {}}
+                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                          >
+                            <p>Fabrication Drawing</p>&nbsp;&nbsp;
+                          </button>
+                        </div>
+                    </li>
+                    <li className="group relative">
+                      <Link
+                        href="/#services"
+                        className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                      >
+                        Get Stamp
+                      </Link>
+                    </li>
+                    <li className="group relative">
+                      <Link
+                        href="/#services"
+                        className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                      >
+                        Contact
+                      </Link>
+                    </li>
                   </ul>
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                <Link
+                
+              <Link
+                      href="/signin"
+                      className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
+                    >
+                      &nbsp;&nbsp;&nbsp;Sign In
+                    </Link>
+                {/* <Link
                   href="/order"
                   className="hidden rounded-xl bg-amber-500 px-7 py-3 text-nowrap text-base font-medium text-white hover:opacity-70 dark:text-white md:block"
                 >
@@ -365,7 +788,7 @@ const Header = () => {
                   >
                     &nbsp;&nbsp;&nbsp;Sign Out
                   </button>
-                }
+                } */}
 
                 {/* <Link
                   href="/signin"

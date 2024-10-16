@@ -26,8 +26,8 @@ const Video = () => {
               data-wow-delay=".15s"
             >
               <div className="relative aspect-[77/50] items-center justify-center">
-                <Image src="/images/video/01.jpg" alt="video image" fill />
-                <div className="absolute right-0 top-0 flex h-full w-full items-center justify-center">
+                <Image src="/images/video/02.jpg" alt="video image" fill />
+                <div className="absolute right-0 top-0 flex h-full w-full items-center justify-center hover:bg-black/30">
                   <button
                     aria-label="video play button"
                     onClick={() => setOpen(true)}

@@ -1,13 +1,14 @@
 import NewsLatterBox from "./NewsLatterBox";
+import Image from "next/image";
 
 const Contact = () => {
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
-        <div className="-mx-4 flex flex-wrap">
+        <div className="-mx-4 flex flex-wrap shadow-xl">
           <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
             <div
-              className="mb-12 rounded-sm bg-white px-8 py-11 shadow-three dark:bg-gray-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
+              className="mb-12 rounded-sm px-8 py-11 dark:bg-gray-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
               data-wow-delay=".15s
               "
             >
@@ -74,8 +75,8 @@ const Contact = () => {
               </form>
             </div>
           </div>
-          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            <NewsLatterBox />
+          <div className="w-full px-4 lg:w-5/12 xl:w-4/12 bg-[url('/images/contact/01.jpg')] bg-cover bg-no-repeat">
+          {/* <Image src="/images/contact/01.jpg" alt="hero image" width={358} height={500} /> */}
           </div>
         </div>
       </div>
