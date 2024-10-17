@@ -251,7 +251,7 @@ const SignupPage = () => {
                 <div className="mb-6">
                   <button
                     onClick={handleSubmit}
-                    className="uppercase shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-lg bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90"
+                    className="uppercase shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-lg bg-primary py-3 text-base font-medium text-white duration-300 hover:bg-primary/90"
                   >
                     Sign up
                   </button>

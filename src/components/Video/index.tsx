@@ -27,11 +27,11 @@ const Video = () => {
             >
               <div className="relative aspect-[77/50] items-center justify-center">
                 <Image src="/images/video/02.jpg" alt="video image" fill />
-                <div className="absolute right-0 top-0 flex h-full w-full items-center justify-center hover:bg-black/30">
+                <div className="absolute right-0 top-0 flex h-full w-full items-center justify-center transition hover:bg-black/30">
                   <button
                     aria-label="video play button"
                     onClick={() => setOpen(true)}
-                    className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white bg-opacity-75 text-primary transition hover:bg-opacity-100"
+                    className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white bg-opacity-75 text-primary transition ease-in-out delay-150 hover:bg-opacity-100"
                   >
                     <Image src="/images/video/video-editing.png" alt="Picture of the video" width={32} height={32} />
                     {/* <svg

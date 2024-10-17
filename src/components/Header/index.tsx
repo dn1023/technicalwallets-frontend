@@ -186,10 +186,10 @@ const Header = () => {
       </div> */}
       <header
         className={`header left-0 z-40 flex flex-col w-full items-center ${sticky
-          ? "top-0 dark:bg-gray-dark dark:shadow-sticky-dark fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+          ? "top-0 dark:bg-gray-dark dark:shadow-sticky-dark fixed z-[99] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
           : "bg-transparent top-[60px]"
           }`}
-      >
+      > 
         {/*I removed absolute*/}
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-left">
@@ -244,7 +244,7 @@ const Header = () => {
                     : "invisible top-[120%] opacity-0"
                     }`}
                 >
-                  <ul className="block lg:flex lg:space-x-10">
+                  <ul className="block lg:flex lg:space-x-7">
                     <li className="group relative">
                       <Link
                         href="/#hero"
@@ -255,7 +255,7 @@ const Header = () => {
                     </li>
                     <li className="group relative">
                       <Link
-                        href="/#solution"
+                        href="/products?format=tree&page=2#upload=2"
                         className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
                         About
@@ -722,7 +722,7 @@ const Header = () => {
                     </li>
                     <li className="group relative">
                       <Link
-                        href="/#services"
+                        href="/contact"
                         className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
                         Contact
@@ -731,80 +731,56 @@ const Header = () => {
                   </ul>
                 </nav>
               </div>
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
-                
-              <Link
-                      href="/signin"
-                      className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
-                    >
-                      &nbsp;&nbsp;&nbsp;Sign In
-                    </Link>
+              <div className="flex items-center justify-end pr-16 lg:pr-0 space-x-2">
                 {/* <Link
                   href="/order"
                   className="hidden rounded-xl bg-amber-500 px-7 py-3 text-nowrap text-base font-medium text-white hover:opacity-70 dark:text-white md:block"
                 >
                   Book Now
-                </Link>
+                </Link> */}
                 {
                   admin &&
                   <Link
                     href="/admin"
-                    className="hidden py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
+                    className="hidden py-3 text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
                   >
-                    &nbsp;&nbsp;&nbsp;Admin
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M680-280q25 0 42.5-17.5T740-340q0-25-17.5-42.5T680-400q-25 0-42.5 17.5T620-340q0 25 17.5 42.5T680-280Zm0 120q31 0 57-14.5t42-38.5q-22-13-47-20t-52-7q-27 0-52 7t-47 20q16 24 42 38.5t57 14.5ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm200 0q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80ZM480-494Z"/></svg>
                   </Link>
                 }
                 {
                   !logined &&
-                  <>
                     <Link
                       href="/signin"
-                      className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
+                      className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
                     >
-                      &nbsp;&nbsp;&nbsp;Sign In
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg>
                     </Link>
-                    <Link
-                      href="/signup"
-                      className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
-                    >
-                      &nbsp;&nbsp;&nbsp;Sign Up
-                    </Link>
-                  </>
                 }
                 {
                   logined && !admin &&
                   <Link
                     href="/profile"
-                    className="hidden text-nowrap py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
+                    className="hidden text-nowrap py-3 text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
                   >
-                    &nbsp;&nbsp;&nbsp;My Page
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
                   </Link>
                 }
                 {
                   logined &&
                   <button
                     onClick={logOut}
-                    className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
+                    className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
                   >
-                    &nbsp;&nbsp;&nbsp;Sign Out
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
                   </button>
-                } */}
-
-                {/* <Link
-                  href="/signin"
-                  className="hidden px-7 py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
-                >
-                  Sign In
-                </Link>
+                }
                 <Link
-                  href="/signup"
-                  className="ease-in-up shadow-btn hover:shadow-btn-hover hidden rounded-sm bg-primary px-8 py-3 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 md:block md:px-9 lg:px-6 xl:px-9"
+                  href="/admin"
+                  className="hidden py-3 text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
                 >
-                  Sign Up
-                </Link> */}
-                <div>
-                  <ThemeToggler />
-                </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
+                </Link>
+                <ThemeToggler />
               </div>
             </div>
           </div>

@@ -23,12 +23,12 @@ const Hero = () => {
                   OF HAVING A HOME
                 </div>
                 <p className="w-full mb-12 !leading-relaxed dark:text-body-color-dark text-black md:text-black sm:text-lg md:text-xl">
-                Our architectural design products and services offer a comprehensive approach to transforming your vision into reality. We specialize in creating cutting-edge architectural solutions that blend functionality with aesthetic appeal.
+                  Our architectural design products and services offer a comprehensive approach to transforming your vision into reality. We specialize in creating cutting-edge architectural solutions that blend functionality with aesthetic appeal.
                 </p>
                 <div className="flex flex-col pt-[10px] items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href="/order"
-                    className="bg-amber-500 px-8 py-4 text-base font-semibold text-white transition delay-150 duration-300 ease-in-out hover:bg-amber-500/80 rounded-lg"
+                    className="bg-amber-500 px-7 py-3 text-base font-semibold text-white transition delay-150 duration-300 ease-in-out hover:bg-amber-500/80 rounded-lg"
                   >
                     SHOW PRODUCTS
                   </Link>
