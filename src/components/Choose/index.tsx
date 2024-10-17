@@ -25,7 +25,7 @@ const Choose = () => {
                 </p>
               </div>
             </div>
-            <div className="w-full lg:w-6/12">
+            <div className="hidden md:block w-full md:w-6/12">
               <div className="mx-auto max-w-[800px] flex justify-end">
                 <Image src="/images/choose/04.png" alt="hero image" width={358} height={500} />
               </div>

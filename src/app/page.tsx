@@ -30,15 +30,15 @@ export default function Home() {
       <Choose/>
       <Video />
       <Choice />
-      {/* <Video />
+      <Contact />
+      {/*
       <Brands />
       <AboutSectionOne />
-      <AboutSectionTwo /> */}
-      {/* <Testimonials /> */}
-      {/* <Pricing />
+      <AboutSectionTwo /> 
+      <Testimonials />
+      <Pricing />
       <Blog />
       <Contact /> */}
-      <Contact />
     </>
   );
 }

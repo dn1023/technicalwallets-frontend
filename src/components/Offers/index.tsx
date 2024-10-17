@@ -32,10 +32,10 @@ const Offers = () => {
                   alt="about-image"
                   width={550}
                   height={450}
-                  className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-lime shadow-2xl lg:mr-0"
+                  className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-lime-500 shadow-2xl lg:mr-0"
                 />
-                <div className="absolute inset-0 -left-10 -top-10 h-[100px] w-[100px] bg-orange-800 shadow-2xl"></div>
-                <div className="absolute -bottom-10 -right-10 h-[150px] w-[150px] bg-lime-500 shadow-2xl"></div>
+                <div className="hidden xl:block absolute inset-0 -left-10 -top-10 h-[100px] w-[100px] bg-orange-800 shadow-2xl"></div>
+                <div className="hidden xl:block absolute -bottom-10 -right-10 h-[150px] w-[150px] bg-lime-500 shadow-2xl"></div>
               </div>
             </div>
           </div>
@@ -50,8 +50,8 @@ const Offers = () => {
                   height={550}
                   className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-white shadow-2xl lg:mr-0"
                 />
-                <div className="absolute inset-0 -left-10 top-10 h-[5px] w-[1000px] bg-fuchsia-800 shadow-2xl z-[-2]"></div>
-                <div className="absolute bottom-10 left-40 h-[5px] w-[1000px] bg-cyan-500 shadow-2xl z-[-2]"></div>
+                <div className="hidden xl:block absolute inset-0 -left-10 top-10 h-[5px] w-[1000px] bg-fuchsia-800 shadow-2xl z-[-2]"></div>
+                <div className="hidden xl:block absolute bottom-10 left-40 h-[5px] w-[1000px] bg-cyan-500 shadow-2xl z-[-2]"></div>
               </div>
             </div>
             <div className="w-full px-4 lg:w-1/2">
@@ -79,14 +79,14 @@ const Offers = () => {
             </div>
             <div className="w-full px-4 lg:w-1/2">
               <div className="relative justify-center relative mx-auto max-w-[550px] -rotate-24 lg:mr-0">
-                <div className="absolute inset-0 -left-10 top-10 h-[250px] w-[50px] bg-lime-800 shadow-2xl"></div>
-                <div className="absolute bottom-10 -right-10 h-[250px] w-[50px] bg-orange-500 shadow-2xl"></div>
+                <div className="hidden xl:block absolute inset-0 -left-10 top-10 h-[250px] w-[50px] bg-lime-800 shadow-2xl"></div>
+                <div className="hidden xl:block absolute bottom-10 -right-10 h-[250px] w-[50px] bg-orange-500 shadow-2xl"></div>
                 <Image
                   src="/images/offers/design.jpg"
                   alt="about-image"
                   width={550}
                   height={450}
-                  className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-lime shadow-2xl lg:mr-0"
+                  className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-lime-500 shadow-2xl lg:mr-0"
                 />
               </div>
             </div>
@@ -102,7 +102,7 @@ const Offers = () => {
                   height={450}
                   className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-white shadow-2xl lg:mr-0"
                 />
-                <div className="absolute inset-0 top-44 -left-32 h-[250px] w-[250px] bg-red-800 shadow-2xl"></div>
+                <div className="hidden xl:block absolute inset-0 top-44 -left-32 h-[250px] w-[250px] bg-red-800 shadow-2xl"></div>
                 {/* <div className="absolute -left-10 top-10 h-[250px] w-[50px] bg-orange-800 shadow-2xl"></div> */}
                 
               </div>
@@ -132,14 +132,14 @@ const Offers = () => {
             </div>
             <div className="w-full px-4 lg:w-1/2">
               <div className="relative justify-center relative mx-auto max-w-[550px] -rotate-24 lg:mr-0">
-                <div className="absolute inset-0 left-10 -top-10 h-[150px] w-[250px] bg-lime-800 shadow-2xl"></div>
-                <div className="absolute -bottom-10 -right-10 h-[250px] w-[250px] bg-orange-500 shadow-2xl"></div>
+                <div className="hidden xl:block absolute inset-0 left-10 -top-10 h-[150px] w-[250px] bg-lime-800 shadow-2xl"></div>
+                <div className="hidden xl:block absolute -bottom-10 -right-10 h-[250px] w-[250px] bg-orange-500 shadow-2xl"></div>
                 <Image
                   src="/images/offers/sustainability.jpg"
                   alt="about-image"
                   width={550}
                   height={450}
-                  className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-lime shadow-2xl lg:mr-0"
+                  className="mx-auto max-w-full drop-shadow-three border-solid border-2 border-lime-500 shadow-2xl lg:mr-0"
                 />
               </div>
             </div>

@@ -13,7 +13,7 @@ const Hero = () => {
         {/* bg-[url('/images/hero/background1.jpg')] bg-cover bg-left-top bg-no-repeat */}
         <div className="container">
           <div className="-mx-4 flex flex-wrap items-center justify-center">
-            <div className="w-1/2 px-4">
+            <div className="w-full md:w-1/2 px-4">
               <div className="flex flex-col items-center justify-center">
                 <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
                   Architectural Digital Products
@@ -43,15 +43,15 @@ const Hero = () => {
                 <Image src="/images/hero/hero2.jpg" alt="hero image" width={500} height={500} />
               </div>
             </div> */}
-            <div className="relative w-1/2 flex flex-wrap">
-              <div className="absolute inset-0 flex flex-col justify-center items-center -translate-x-20 -translate-y-40 z-[1] rotate-6 drop-shadow-xl rounded-lg">
-                <Image src="/images/hero/hero1.jpg" alt="hero image" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110"  width={400} height={400} />
+            <div className="hidden 2xl:block md:relative w-full md:w-1/2 flex flex-wrap">
+              <div className="absolute inset-0 flex flex-col justify-center items-center -left-32 -translate-y-40 z-[1] rotate-6 drop-shadow-xl rounded-lg">
+                <Image src="/images/hero/hero1.jpg" alt="Picture of the hero" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110"  width={400} height={400} />
               </div>
-              <div className="absolute inset-0 flex flex-col justify-center items-center drop-shadow-xl translate-x-24 rounded-lg">
-                <Image src="/images/hero/hero4.jpg" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="hero image" width={400} height={400} />
+              <div className="absolute flex flex-col justify-center items-center drop-shadow-xl right-0 -bottom-16 rounded-lg">
+                <Image src="/images/hero/hero4.jpg" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="Picture of the hero" width={400} height={400} />
               </div>
-              <div className="absolute inset-0 flex flex-col justify-center items-center -translate-x-20 -rotate-12 translate-y-40 z-[2] drop-shadow-xl rounded-lg">
-                <Image src="/images/hero/hero3.jpg" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="hero image" width={400} height={400} />
+              <div className="absolute inset-0 flex flex-col justify-center items-center left-12 -rotate-12 translate-y-40 z-[2] drop-shadow-xl rounded-lg">
+                <Image src="/images/hero/hero3.jpg" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="Picture of the hero" width={400} height={400} />
               </div>
             </div>
             {/* <div className="w-full px-4 lg:w-6/12">
