@@ -140,108 +140,113 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
+              <div className="hidden lg:block w-full md:w-1/2 lg:w-8/12 xl:w-7/12">
+                <div className="w-full flex flex-nowrap justify-between">
+                  <div className="px-4">
+                    <div className="mb-12 lg:mb-16">
+                      <h2 className="mb-10 text-xl font-bold text-black dark:text-body-color-dark">
+                        Useful Links
+                      </h2>
+                      <ul>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            Feature
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            Offer
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            About
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-              <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-                <div className="mb-12 lg:mb-16">
-                  <h2 className="mb-10 text-xl font-bold text-black dark:text-body-color-dark">
-                    Useful Links
-                  </h2>
-                  <ul>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        Feature
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        Offer
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        About
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                  <div className="px-4">
+                    <div className="mb-12 lg:mb-16">
+                      <h2 className="mb-10 text-xl font-bold text-black dark:text-body-color-dark">
+                        Terms
+                      </h2>
+                      <ul>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            TOS
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            Privacy Policy
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            Refund Policy
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-              <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-                <div className="mb-12 lg:mb-16">
-                  <h2 className="mb-10 text-xl font-bold text-black dark:text-body-color-dark">
-                    Terms
-                  </h2>
-                  <ul>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        TOS
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        Privacy Policy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        Refund Policy
-                      </Link>
-                    </li>
-                  </ul>
+                  <div className="px-4">
+                    <div className="mb-12 lg:mb-16">
+                      <h2 className="mb-10 text-xl font-bold text-black dark:text-body-color-dark">
+                        Support & Help
+                      </h2>
+                      <ul>
+                        <li>
+                          <Link
+                            href="/contact"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            Open Support Ticket
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            Terms of Use
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/"
+                            className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
+                          >
+                            About
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
+                
               </div>
-
-              <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-3/12">
-                <div className="mb-12 lg:mb-16">
-                  <h2 className="mb-10 text-xl font-bold text-black dark:text-body-color-dark">
-                    Support & Help
-                  </h2>
-                  <ul>
-                    <li>
-                      <Link
-                        href="/contact"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        Open Support Ticket
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        Terms of Use
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="mb-4 inline-block text-base text-black dark:text-body-color-dark duration-300 hover:text-amber-500"
-                      >
-                        About
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              
             </div>
 
             <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>

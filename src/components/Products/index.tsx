@@ -7,7 +7,7 @@ import wave from './../../../public/images/offers/wave-white-gray.svg'
 const Products = () => {
   return (
     <>
-      <section id="services" className="dark:bg-gray-dark py-16 md:py-20 lg:py-28">
+      <section id="products" className="dark:bg-gray-dark py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
             title="Here are our some digital produts"
