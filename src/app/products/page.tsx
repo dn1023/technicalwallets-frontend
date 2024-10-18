@@ -7,12 +7,12 @@ import productsData from "@/components/Products/productsData";
 import { Suspense } from 'react'
 import Breadcrumb from "@/components/Common/Breadcrumb";
 
-function Search() {
+/* function Search() {
   const searchParams = useSearchParams();
   const format = searchParams.get('format');
   const page = searchParams.get('page');
   return format;
-}
+} */
 
 const Products = () => {
   /* const searchParams = useSearchParams() */
@@ -21,11 +21,6 @@ const Products = () => {
 
   useEffect(() => {
     // Access the hash fragment
-    setCategory(
-      <Suspense>
-        <Search />
-      </Suspense>
-    );
     setHash(window.location.hash);
   }, []);
 
