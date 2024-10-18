@@ -104,7 +104,7 @@ const Header = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  
+
   const handleSignIn = async () => {
     if (email == '' || password == '') {
       toast.warn("Please check email adress and password.")
@@ -336,7 +336,7 @@ const Header = () => {
                   <ul className="block lg:flex lg:space-x-7">
                     <li className="group relative">
                       <Link
-                        href="/#hero"
+                        href="/"
                         className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
                         Home
@@ -344,7 +344,7 @@ const Header = () => {
                     </li>
                     <li className="group relative">
                       <Link
-                        href="/products?format=tree&page=2#upload=2"
+                        href="/about"
                         className="flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
                         About
@@ -423,7 +423,7 @@ const Header = () => {
                             catalog[0] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/products?format=tree&page=2#upload=2"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 House

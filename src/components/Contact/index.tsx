@@ -30,7 +30,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
-                        placeholder="Enter your name"
+                        placeholder="Enter your Name"
                         className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       />
                     </div>
@@ -45,7 +45,22 @@ const Contact = () => {
                       </label>
                       <input
                         type="email"
-                        placeholder="Enter your email"
+                        placeholder="Enter your Email"
+                        className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full px-4">
+                    <div className="mb-8">
+                      <label
+                        htmlFor="telephone"
+                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                      >
+                        Your Telephone
+                      </label>
+                      <input
+                        type="telephone"
+                        placeholder="Enter your Telephone"
                         className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       />
                     </div>

@@ -1,11 +1,11 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import Contact from "@/components/Contact";
-
+import ContactDescription from "@/components/Contact/ContactDescription";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Technical Wallet",
-  description: "Technical Wallet",
+  description: "Technical Wallet | Architectural Digital Products & Service",
   // other metadata
 };
 
@@ -14,8 +14,9 @@ const ContactPage = () => {
     <>
       <Breadcrumb
         pageName="Contact"
-        description="We&apos;d love to hear from you! Whether you have questions about our digital architectural products, need support, or want to discuss a potential project, our team is here to help."
+        description="Welcome to Technical Wallet! Whether you have questions about our architectural designs, need assistance with an order, or are interested in custom services, we&apos;re here to help."
       />
+      <ContactDescription />
       <Contact />
     </>
   );
