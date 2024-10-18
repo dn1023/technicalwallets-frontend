@@ -11,6 +11,7 @@ import { Tourney } from "next/font/google";
 import { useStyleRegistry } from "styled-jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { Modal } from 'antd';
 
 const Header = () => {
   
@@ -97,6 +98,92 @@ const Header = () => {
     index == 3 && setStatus([false, false, false, !status[3], false, false, false]);
     index == 4 && setStatus([false, false, false, false, !status[4], false, false]);
   } */
+  //Signin Modal
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = async () => {
+    if (email == '' || password == '') {
+      toast.warn("Please check email adress and password.")
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await AuthService.login(email, password); // Assuming login returns a promise
+      if (response !== undefined) {
+        if (!response?.message) {
+          //router.push('/'); // Navigate on success
+          const user = AuthService.getCurrentUser();
+          if (user !== null) {
+            console.log(user);
+            setLogined(true);
+            if (user.roles.includes("ROLE_ADMIN")) {
+              setAdmin(true);
+            }
+          }
+          setIsSignInOpen(false);
+        }
+        else
+          toast.warn(response?.message);
+      }
+      //router.push('/profile'); // Navigate to profile page upon successful login
+      //window.location.reload(); // Reload the page
+    } catch (error) {
+      const resMessage =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      setMessage(resMessage);
+      toast.error("Server connection failed!");
+      toast.warning("Please try later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  //Signup Modal
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [rePassword, setRePassword] = useState("");
+  const [name, setName] = useState("");
+
+  const handleSignUp = async () => {
+    if (email == '' || password == '') {
+      toast.warn("Please check email adress and password.")
+      return;
+    }
+    if (password != rePassword) {
+      toast.warn("Please check password.")
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await AuthService.register(name, email, password); // Assuming login returns a promise
+      if (response !== undefined) {
+        if (response?.message == "User registered successfully!") {
+          toast.success("User registered successfully!");
+          setIsSignInOpen(false);
+        }
+        else
+          toast.warning(response.message);
+      }
+      else
+      {
+        toast.error("Server connection failed!");
+        toast.warning("Please try later.");
+      }
+      // Navigate to profile page upon successful login
+      //window.location.reload(); // Reload the page
+    } catch (error) {
+      const resMessage =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      setMessage(resMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -749,12 +836,21 @@ const Header = () => {
                 }
                 {
                   !logined &&
-                    <Link
-                      href="/signin"
-                      className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg>
-                    </Link>
+                    <>
+                      <button
+                        onClick={()=>setIsSignInOpen(true)}
+                        className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg>
+                      </button>
+                      <button
+                        onClick={()=>setIsSignUpOpen(true)}
+                        tooltip="Sign Up"
+                        className="hidden py-3 text-nowrap text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z"/></svg>
+                      </button>
+                    </>
                 }
                 {
                   logined && !admin &&
@@ -775,7 +871,7 @@ const Header = () => {
                   </button>
                 }
                 <Link
-                  href="/admin"
+                  href="/cart"
                   className="hidden py-3 text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
@@ -786,6 +882,256 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <Modal
+        title={
+          <h3 className="mt-3 mb-11 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+            Sign in to your account
+          </h3>
+        } 
+        open={isSignInOpen} 
+        onCancel={()=>setIsSignInOpen(false)}
+        footer={
+          <>
+            <div className="mb-6 px-5">
+              <button
+                onClick={handleSignIn}
+                className="uppercase shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-lg bg-primary py-3 text-base font-medium text-white duration-300 hover:bg-primary/90"
+              >
+                Sign in
+              </button>
+            </div>
+            <p className="text-center text-base font-medium text-body-color mb-3">
+              Don&apos;t you have an account?{" "} Please sign up.
+            </p>
+          </>
+        }
+        width={500}
+        centered
+      >
+        <div className="px-5">
+          <div className="mb-8">
+            <label
+              htmlFor="email"
+              className="mb-3 block text-sm text-dark dark:text-white"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your Email"
+              className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            />
+          </div>
+          <div className="mb-8">
+            <label
+              htmlFor="password"
+              className="mb-3 block text-sm text-dark dark:text-white"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your Password"
+              className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            />
+          </div>
+          <div className="mb-8 flex flex-col justify-between sm:flex-row sm:items-center">
+            <div className="mb-4 sm:mb-0">
+              <label
+                htmlFor="checkboxLabel"
+                className="flex cursor-pointer select-none items-center text-base font-medium text-body-color"
+              >
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="checkboxLabel"
+                    className="sr-only"
+                  />
+                  <div className="box mr-4 flex h-5 w-5 items-center justify-center rounded border border-body-color border-opacity-20 dark:border-white dark:border-opacity-10">
+                    <span className="opacity-0">
+                      <svg
+                        width="11"
+                        height="8"
+                        viewBox="0 0 11 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z"
+                          fill="#3056D3"
+                          stroke="#3056D3"
+                          strokeWidth="0.4"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                Keep me signed in
+              </label>
+            </div>
+            <div>
+              <a
+                href="#0"
+                className="text-base font-medium text-primary hover:underline"
+              >
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+        </div>        
+        
+      </Modal>
+      <Modal
+        title={
+          <>
+            <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+            Create your account
+            </h3>
+            <p className="mb-11 text-center text-base font-medium text-body-color">
+            It&apos;s totally free and super easy
+            </p>
+          </>
+        } 
+        open={isSignUpOpen} 
+        onCancel={()=>setIsSignUpOpen(false)}
+        footer={
+          <>
+            <div className="mb-6 px-5">
+              <button
+                onClick={handleSignUp}
+                className="uppercase shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-lg bg-primary py-3 text-base font-medium text-white duration-300 hover:bg-primary/90"
+              >
+                Sign Up
+              </button>
+            </div>
+            <p className="text-center text-base font-medium text-body-color mb-3">
+              Already using TechnicalWallet?{" "} Please sign in.
+            </p>
+          </>
+        }
+        width={500}
+      >
+        <div className="px-5">
+          <div className="mb-8">
+            <label
+              htmlFor="name"
+              className="mb-3 block text-sm text-dark dark:text-white"
+            >
+              {" "}
+              Full Name{" "}
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              name="name"
+              placeholder="Enter your full name"
+              className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            />
+          </div>
+          <div className="mb-8">
+            <label
+              htmlFor="email"
+              className="mb-3 block text-sm text-dark dark:text-white"
+            >
+              {" "}
+              Email{" "}
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your Email"
+              className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            />
+          </div>
+          <div className="mb-8">
+            <label
+              htmlFor="password"
+              className="mb-3 block text-sm text-dark dark:text-white"
+            >
+              {" "}
+              Password{" "}
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your Password"
+              className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            />
+          </div>
+          <div className="mb-8">
+            <label
+              htmlFor="password"
+              className="mb-3 block text-sm text-dark dark:text-white"
+            >
+              {" "}
+              Confirm Password{" "}
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={rePassword}
+              onChange={(e) => setRePassword(e.target.value)}
+              placeholder="Enter your Password"
+              className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            />
+          </div>
+          <div className="mb-8 flex">
+            <label
+              htmlFor="checkboxLabel"
+              className="flex cursor-pointer select-none text-base font-medium text-body-color"
+            >
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  id="checkboxLabel"
+                  className="sr-only"
+                />
+                <div className="box mr-4 mt-1 flex h-5 w-5 items-center justify-center rounded border border-body-color border-opacity-20 dark:border-white dark:border-opacity-10">
+                  <span className="opacity-0">
+                    <svg
+                      width="11"
+                      height="8"
+                      viewBox="0 0 11 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z"
+                        fill="#3056D3"
+                        stroke="#3056D3"
+                        strokeWidth="0.4"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <span>
+                By creating account means you agree to the
+                <a href="#0" className="text-primary hover:underline">
+                  {" "}
+                  Terms and Conditions{" "}
+                </a>
+                , and our
+                <a href="#0" className="text-primary hover:underline">
+                  {" "}
+                  Privacy Policy{" "}
+                </a>
+              </span>
+            </label>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
