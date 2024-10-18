@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <>
-      <div className="pt-[80px]"></div>
+      <Breadcrumb
+        pageName="Contact"
+        description="We&apos;d love to hear from you! Whether you have questions about our digital architectural products, need support, or want to discuss a potential project, our team is here to help."
+      />
       <Contact />
     </>
   );
