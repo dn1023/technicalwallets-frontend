@@ -53,7 +53,6 @@ export default function Message() {
               </div>
               <div className="h-[60px] pb-2 bg-white flex justify-between border border-t border-strike">
                 <textarea
-                  type="text"
                   name="message"
                   placeholder="Enter your message"
                   className="w-[250px] h-full overflow-auto bg-white px-3 py-3 text-base outline-none text-body-color"
