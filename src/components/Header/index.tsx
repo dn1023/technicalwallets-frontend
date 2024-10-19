@@ -803,7 +803,7 @@ const Header = () => {
                     </li>
                     <li className="group relative">
                       <Link
-                        href="/#services"
+                        href="/stamp"
                         className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
                         Get Stamp

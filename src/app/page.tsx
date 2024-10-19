@@ -13,11 +13,11 @@ import Products from "@/components/Products";
 import Choose from "@/components/Choose";
 import { Metadata } from "next";
 
-/* export const metadata: Metadata = {
-  title: "Laundry and Dry Cleaning in LonDon",
-  description: "Laundry and Dry Cleaning in LonDon",
+export const metadata: Metadata = {
+  title: "Technical Wallet | Architectural Digital Products & Service",
+  description: "Technical Wallet | Architectural Digital Products & Service",
   // other metadata
-}; */
+};
 
 export default function Home() {
   return (

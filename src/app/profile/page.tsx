@@ -13,8 +13,8 @@ import Profile from "@/components/Admin/Profile"
 import MyOrder from "@/components/Profile/MyOrder"
 
 /* export const metadata: Metadata = {
-  title: "Laundry and Dry Cleaning in LonDon",
-  description: "Laundry and Dry Cleaning in LonDon",
+  title: "Technical Wallet | Architectural Digital Products & Service",
+  description: "Technical Wallet | Architectural Digital Products & Service",
   // other metadata
 }; */
 

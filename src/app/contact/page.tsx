@@ -4,7 +4,7 @@ import ContactDescription from "@/components/Contact/ContactDescription";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Technical Wallet",
+  title: "Technical Wallet | Architectural Digital Products & Service",
   description: "Technical Wallet | Architectural Digital Products & Service",
   // other metadata
 };
