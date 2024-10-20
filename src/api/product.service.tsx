@@ -50,7 +50,7 @@ class ProductService {
     }).catch(error => console.error('Error registering:', error));
   }
 
-  async update(id: string, title: string, content: string, oldprice: string, newprice: string, param1: string, param2: string, look: string, handshake: string): Promise<[]> {
+  async update(id: string, title: string, content: string, oldprice: string, newprice: string, param1: string, param2: string, look: string, handshake: string): Promise<ProductResponse> {
     return fetch(`${API_URL}update`, {
       method: 'POST',
       headers: {
