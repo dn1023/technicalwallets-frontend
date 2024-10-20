@@ -6,6 +6,16 @@ interface SettingResponse {
   message?: string;
 }
 
+interface SettingDetailResponse {
+  address?: string;
+  phone?: string;
+  email?: string;
+  paymenttoken?: string;
+  smtpemail?: string;
+  smtppass?: string;
+  receiveremail1?: string;
+  receiveremail2?: string;
+}
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_SETTING_API;
 
 class SettingService {
@@ -39,7 +49,7 @@ class SettingService {
     }).catch(error => console.error('Error updating:', error));
   }
 
-  async getAll(): Promise<[]> {
+  async getAll(): Promise<SettingDetailResponse> {
     return fetch(`${API_URL}getAll`, {
       method: 'GET',
       headers: {
