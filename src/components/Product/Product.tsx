@@ -123,19 +123,19 @@ const Product = (props: Props) => {
                     {product.param2}
                   </p>
                 </div>
-                <div className="flex flex-wrap justify-between">
+                <div className="flex flex-wrap justify-end">
                   <button
                     onClick={onCart}
                     className="bg-amber-500 px-7 py-3 text-base font-semibold text-white transition delay-150 duration-300 ease-in-out hover:bg-amber-500/80 rounded-lg"
                   >
-                    Add to cart
+                    Order
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => onBuy}
                     className="bg-amber-500 px-7 py-3 text-base font-semibold text-white transition delay-150 duration-300 ease-in-out hover:bg-amber-500/80 rounded-lg"
                   >
                     Buy it now
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
