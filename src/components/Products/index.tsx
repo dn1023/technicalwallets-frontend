@@ -42,11 +42,11 @@ const Products = () => {
             {products.map((product) => (
               <SingleProduct key={product.id} product={product} />
             ))}
-            {
-              !loading &&
-              <div className="min-h-[300px] flex items-center justify-center"><Empty /></div>
-            }
           </div>
+          {
+            !loading &&
+            <div className="min-h-[300px] flex items-center justify-center"><Empty /></div>
+          }
         </div>
       </section>
     </>
