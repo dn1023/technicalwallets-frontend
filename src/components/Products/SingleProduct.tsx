@@ -27,7 +27,7 @@ const SingleProduct = ({ product }: { product: Product }) => {
             </div>
             <div className="absolute inset-0 w-full md:w-[300px] h-[450px] flex items-center justify-center">
               <Link
-                href={"/product/" + id}
+                href={"/productdetail/" + id}
                 className="w-full h-full"
               >
               </Link>

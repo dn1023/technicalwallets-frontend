@@ -15,6 +15,7 @@ import { Empty, Image as ImageAnd, Modal } from 'antd';
   const page = searchParams.get('page');
   return format;
 } */
+
 interface Props {
   params: string;
 }
@@ -46,7 +47,7 @@ const ProductsOfPage = (props: Props) => {
   return (
     <>
       <section id="products" className="dark:bg-gray-dark py-16 md:py-20 lg:py-28">
-        <div className="container">
+        <div className="container mb-[50px] md:mb-[150px] ">
           <div className="grid grid-cols-1 md:gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((product) => (
               <SingleProduct key={product.id} product={product} />

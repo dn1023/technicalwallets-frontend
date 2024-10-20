@@ -82,6 +82,21 @@ class ProductService {
       });
   }
 
+  async getSome(): Promise<[]> {
+    return fetch(`${API_URL}getSome`, {
+      method: 'GET',
+      headers: {
+        ...authHeader(),
+      },
+    })
+      .then(response => {
+        /* if (!response.ok) {
+          throw new Error('Network response was not ok');
+        } */
+        return response.json();
+      });
+  }
+
   async getAllByCategory(category: string, subcategory: string, subsubcategory: string): Promise<[]> {
     return fetch(`${API_URL}getAllByCategory`, {
       method: 'POST',

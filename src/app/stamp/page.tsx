@@ -13,7 +13,7 @@ const StampPage = () => {
     <>
       <Breadcrumb
         pageName="Get Stamp"
-        description="At Technical Wallet, we believe that every architectural design deserves recognition. Our digital stamp feature allows you to showcase your work with pride and professionalism."
+        description="We provide official stamps on drawings, affirming their adherence to professional and regulatory standards."
       />
       <Stamp />
     </>
