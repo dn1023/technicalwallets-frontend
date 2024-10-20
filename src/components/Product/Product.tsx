@@ -18,7 +18,7 @@ interface Props {
 const Product = (props: Props) => {
 
   const API = process.env.NEXT_PUBLIC_BACKEND_API;
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
