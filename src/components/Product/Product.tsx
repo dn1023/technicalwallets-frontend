@@ -18,12 +18,12 @@ interface Props {
 const Product = (props: Props) => {
 
   const API = process.env.NEXT_PUBLIC_BACKEND_API;
-  const [product, setProduct] = useState({title:'', content:'', coverimage:'', oldprice:'', newprice:'', param1: '', param2:'', look:'', handshake:''});
+  const [product, setProduct] = useState({ title: '', content: '', coverimage: '', oldprice: '', newprice: '', param1: '', param2: '', look: 0, handshake: 0 });
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setProduct({title:'', content:'', coverimage:'', oldprice:'', newprice:'', param1: '', param2:'', look:'', handshake:''});
+    setProduct({ title: '', content: '', coverimage: '', oldprice: '', newprice: '', param1: '', param2: '', look: 0, handshake: 0 });
     setLoading(false);
     const fetchProduct = async () => {
       const res = await ProductService.getById(props.params);
