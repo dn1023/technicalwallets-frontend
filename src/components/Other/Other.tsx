@@ -1,4 +1,5 @@
 'use client';
+import Breadcrumb from "@/components/Common/Breadcrumb";
 import SharePost from "@/components/Blog/SharePost";
 import TagButton from "@/components/Blog/TagButton";
 import Image from "next/image";
@@ -15,37 +16,17 @@ interface Props {
   params: string;
 }
 
-const Product = (props: Props) => {
+const Other = (props: Props) => {
 
   const API = process.env.NEXT_PUBLIC_BACKEND_API;
-  const [product, setProduct] = useState({title:'', content:'', coverimage:'', oldprice:'', newprice:'', param1: '', param2:'', look:'', handshake:''});
+  const catalogs = props.params.replace(/_/g, " ").split("%3D");
+
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setProduct({title:'', content:'', coverimage:'', oldprice:'', newprice:'', param1: '', param2:'', look:'', handshake:''});
-    setLoading(false);
-    const fetchProduct = async () => {
-      const res = await ProductService.getById(props.params);
-      if (res !== undefined) {
-        console.log(res);
-        setProduct(res);
-      }
-    };
-    fetchProduct().catch(error => console.error('Failed to fetch products:', error));
-
-    setProducts([]);
-    setLoading(false);
-    const fetchProducts = async () => {
-      const res = await ProductService.getSome();
-      if (res !== undefined) {
-        if (res?.length > 0) {
-          setProducts(res);
-          setLoading(res?.length > 0);
-        }
-      }
-    };
-    fetchProducts().catch(error => console.error('Failed to fetch products:', error));
+    
   }, []);
 
   const onCart = () => {
@@ -58,6 +39,10 @@ const Product = (props: Props) => {
 
   return (
     <>
+      <Breadcrumb
+        pageName={catalogs[0] + "/" + catalogs[1] + catalogs[2] && "/" + catalogs[3] }
+        description="We offer a range of innovative digital architectural products designed to enhance your design process and improve project outcomes."
+      />
       <section id="product" className="pb-[100px] pt-[100px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center mb-[50px] md:mb-[150px]">
@@ -160,4 +145,4 @@ const Product = (props: Props) => {
   );
 };
 
-export default Product;
+export default Other;
