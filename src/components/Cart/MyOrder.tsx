@@ -53,9 +53,9 @@ const MyOrder = () => {
 
   return (
     <>
-      <div className="p-8 rounded-lg shadow-three bg-white dark:bg-gray-dark">
+      <div className="p-8 dark:bg-gray-dark">
         <h1 className="mb-8 text-3xl font-bold leading-tight text-dark dark:text-body-color-dark sm:text-4xl sm:leading-tight">
-          My Orders
+          My Cart
         </h1>
         <div className="w-full mb-5">
           {

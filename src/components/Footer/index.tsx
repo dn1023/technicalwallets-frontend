@@ -2,9 +2,42 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from 'react';
+import { useEffect, useState, useCallback } from "react";
+import SubscribeService from "@/api/subscribe.service";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const onSubscribe = async () =>
+  {
+    if (name.trim() == '' || email.trim() == '') {
+      toast.warn("Please check email adress and password.")
+      return;
+    }
+    try {
+      const response = await SubscribeService.register(name, email);
+      if (response !== undefined) {
+        if (response?.message == "Subscribe registered successfully!") {
+          toast.success(response?.message);
+        }
+        else
+          toast.warn(response?.message);
+        setName('');
+        setEmail('');
+      }
+    } catch (error) {
+      const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      toast.error("Server connection failed!");
+      toast.warning("Please try later.");
+    } finally {
+      
+    }
+  }
+
   return (
     <>
       <footer className="relative z-10 bg-white dark:bg-gray-dark bg-[url('/images/footer/01.jpg')] bg-cover bg-center bg-no-repeat">
@@ -252,20 +285,25 @@ const Footer = () => {
                     <input
                       type="text"
                       name="name"
-                      placeholder="Enter your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Enter your Name"
                       className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                     />
                     <input
                       type="email"
                       name="email"
-                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your Email"
                       className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                     />
-                    <input
-                      type="submit"
-                      value="Subscribe"
+                    <button
+                      onClick={onSubscribe}
                       className="mb-5 flex w-full cursor-pointer items-center justify-center rounded-lg bg-amber-500 px-7 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-amber-500/90 dark:shadow-submit-dark"
-                    />
+                    >
+                      Subscribe
+                    </button>
                     <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
                       No spam guaranteed, So please don&apos;t send any spam mail.
                     </p>

@@ -3,14 +3,15 @@ import { Product } from "@/types/product";
 import Link from "next/link";
 
 const SingleProduct = ({ product }: { product: Product }) => {
-  const { id, icon, image, title, oldprice, newprice } = product;
+  const API = process.env.NEXT_PUBLIC_BACKEND_API;
+  const { id, icon, coverimage, title, oldprice, newprice } = product;
   return (
     <>
       <div className="w-full flex items-center justify-center">
         <div className="relative h-[450px] transition duration-200 hover:-translate-y-2">
           <div className="wow fadeInUp flex justify-center items-center text-center saturate-50 hover:filter-none shadow-2xl" data-wow-delay=".15s">
-            <div className="mx-auto w-full md:w-[300px] flex flex-wrap items-center justify-center">
-              <Image src={image} alt="Picture of the product" style={{objectFit: "cover"}} width={300} height={450} />
+            <div className="mx-auto w-full md:w-[300px] h-[450px] bg-black/80 flex flex-wrap items-center justify-center">
+              <Image src={API + "products/" + coverimage} alt="Picture of the product" layout="fill" objectFit="cover" />
               {/* <Image src="/images/services/trans.png" alt="offer image" className="absolute" width={300} height={450} /> */}
             </div>
             <div className="absolute inset-0 text-center">

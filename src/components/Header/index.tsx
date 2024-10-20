@@ -112,7 +112,7 @@ const Header = () => {
     }
     setLoading(true);
     try {
-      const response = await AuthService.login(email, password); // Assuming login returns a promise
+      const response = await AuthService.signin(email, password); // Assuming login returns a promise
       if (response !== undefined) {
         if (!response?.message) {
           //router.push('/'); // Navigate on success
@@ -120,11 +120,12 @@ const Header = () => {
           if (user !== null) {
             console.log(user);
             setLogined(true);
+            setIsSignInOpen(false);
+            toast.success("Welcome to Technical Wallet!");
             if (user.roles.includes("ROLE_ADMIN")) {
               setAdmin(true);
             }
           }
-          setIsSignInOpen(false);
         }
         else
           toast.warn(response?.message);
@@ -160,11 +161,11 @@ const Header = () => {
     }
     setLoading(true);
     try {
-      const response = await AuthService.register(name, email, password); // Assuming login returns a promise
+      const response = await AuthService.signup(name, email, password); // Assuming login returns a promise
       if (response !== undefined) {
         if (response?.message == "User registered successfully!") {
+          setIsSignUpOpen(false);
           toast.success("User registered successfully!");
-          setIsSignInOpen(false);
         }
         else
           toast.warning(response.message);
@@ -273,6 +274,7 @@ const Header = () => {
       
       <div className={`${sticky ? "h-[60px]" : ""}`}>
       </div> */}
+      {/* <ToastContainer /> */}
       <header
         className={`header left-0 z-40 flex flex-col w-full items-center ${sticky
           ? "top-0 dark:bg-gray-dark dark:shadow-sticky-dark fixed z-[99] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
@@ -423,49 +425,49 @@ const Header = () => {
                             catalog[0] &&
                             <>
                               <Link
-                                href="/products?format=tree&page=2#upload=2"
+                                href="/products/Design_Catalog=Architecture_Design=House"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 House
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=Villa"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Villa
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=Palace"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Palace
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=Comm./Resid._Towers"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Comm./Resid. Towers
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=Residential_Buildings"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Residential Buildings
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=Commercial_Buildings"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Commercial Buildings
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=Hotels"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Hotels
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Architecture_Design=GYM&SPA"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 GYM & SPA
@@ -487,13 +489,13 @@ const Header = () => {
                           catalog[1] &&
                           <>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Landscape_Design=Parks"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Parks
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Landscape_Design=Streetscape"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Streetscape
@@ -515,67 +517,67 @@ const Header = () => {
                           catalog[2] &&
                           <>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Tiny_Houses"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Tiny Houses
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Portable_Houses"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Portable Houses
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=RV/Camper"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
-                              RV / Camper
+                              RV/Camper
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Tent"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Tent
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Tiny_Restaurant/Cafe"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Tiny Restaurant/Cafe
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Portable_Truck_Food/Cafe"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Portable Truck Food/Cafe
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Portable_Ice_Cream"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Portable Ice Cream
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Kiosks/Exhibition"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Kiosks/Exhibition
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Furniture"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Furniture&lsquo;s
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Lights"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Lights
                             </Link>
                             <Link
-                              href="/#offers"
+                              href="/products/Design_Catalog=Industrial_Design=Art/Decoration"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Art/Decoration
@@ -598,19 +600,19 @@ const Header = () => {
                             catalog[3] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Marine_Design=Floating Houses"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Floating Houses
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Marine_Design=Floating_Restaurant/Cafe"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Floating Restaurant/Cafe
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Marine_Design=Yacht/Boat"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Yacht/Boat
@@ -632,7 +634,7 @@ const Header = () => {
                             catalog[4] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Products_Design=Assemblies_Toy"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Assemblies Toy&apos;s
@@ -654,7 +656,7 @@ const Header = () => {
                             catalog[5] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/products/Design_Catalog=Prototype_Design=Equipment"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Equipment&apos;s
@@ -862,6 +864,13 @@ const Header = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
                   </Link>
                 }
+                <Link
+                  href="/cart"
+                  className="hidden py-3 text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
+                </Link>   
+                <ThemeToggler />
                 {
                   logined &&
                   <button
@@ -871,13 +880,6 @@ const Header = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
                   </button>
                 }
-                <Link
-                  href="/cart"
-                  className="hidden py-3 text-base font-medium text-dark hover:opacity-70 dark:text-body-color-dark md:block"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path fill="currentColor" d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
-                </Link>
-                <ThemeToggler />
               </div>
             </div>
           </div>
@@ -1025,14 +1027,14 @@ const Header = () => {
               className="mb-3 block text-sm text-dark dark:text-white"
             >
               {" "}
-              Full Name{" "}
+              User Name{" "}
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               name="name"
-              placeholder="Enter your Full Name"
+              placeholder="Enter your User Name"
               className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
             />
           </div>

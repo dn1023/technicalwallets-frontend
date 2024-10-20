@@ -20,29 +20,11 @@ import productsData from "@/components/Products/productsData";
 function ProductDetailsPage({ params }) {
   const router = useRouter();
   console.log(params.id);
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   const [show, setShow] = useState(false);
-  useEffect(() => {
-    fetch(process.env.dbHost + '/api/product/individual', {
-      method: 'POST',
-      body: JSON.stringify({ category: params.id }),
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'same-origin',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.length > 0) {
-          setShow(true);
-          setProducts(data);
-        }
-        else {
-          setShow(false);
-        }
 
-        //setIsAdmin(data == "Admin Content." ? true : false);
-        //console.log(data);
-      })
+  useEffect(() => {
+    
   }, []);
 
   return (

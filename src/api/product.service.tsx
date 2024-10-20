@@ -35,8 +35,40 @@ class ProductService {
     }).catch(error => console.error('Error registering:', error));
   }
 
-  async getAllProducts(): Promise<[]> {
-    return fetch(`${API_URL}all`, {
+  async updateImage(formdata:FormData): Promise<ProductResponse> {
+    return fetch(`${API_URL}updateImage`, {
+      method: 'POST',
+      headers: {
+        ...authHeader(),
+      },
+      body: formdata,
+    }).then(response => {
+      /* if (!response.ok) {
+        throw new Error('Network response was not ok');
+      } */
+      return response.json();
+    }).catch(error => console.error('Error registering:', error));
+  }
+
+  async update(id: string, title: string, content: string, oldprice: string, newprice: string, param1: string, param2: string, look: string, handshake: string): Promise<[]> {
+    return fetch(`${API_URL}update`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeader(),
+      },
+      body: JSON.stringify({ id, title, content, oldprice, newprice, param1, param2, look, handshake }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      });
+  }
+
+  async getAll(): Promise<[]> {
+    return fetch(`${API_URL}getAll`, {
       method: 'GET',
       headers: {
         ...authHeader(),
@@ -50,7 +82,41 @@ class ProductService {
       });
   }
 
-  async deleteById(id: number): Promise<ProductResponse> {
+  async getAllByCategory(category: string, subcategory: string, subsubcategory: string): Promise<[]> {
+    return fetch(`${API_URL}getAllByCategory`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeader(),
+      },
+      body: JSON.stringify({ category, subcategory, subsubcategory }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      });
+  }
+
+  async getById(id: string): Promise<[]> {
+    return fetch(`${API_URL}getById`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeader(),
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      });
+  }
+
+  async delete(id: number): Promise<ProductResponse> {
     return fetch(`${API_URL}delete`, {
       method: 'POST',
       headers: {

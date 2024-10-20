@@ -44,7 +44,7 @@ class AuthService {
     return AuthService.instance;
   }
 
-  async login(email: string, password: string): Promise<UserResponse> {
+  async signin(email: string, password: string): Promise<UserResponse> {
     return fetch(`${API_URL}signin`, {
       method: 'POST',
       headers: {
@@ -82,7 +82,7 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  async register(username: string, email: string, password: string): Promise<RegisterResponse> {
+  async signup(username: string, email: string, password: string): Promise<RegisterResponse> {
     return fetch(`${API_URL}signup`, {
       method: 'POST',
       headers: {

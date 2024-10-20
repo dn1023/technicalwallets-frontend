@@ -5,37 +5,38 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import UserService from "@/api/user.service";
+import SubscribeService from "@/api/subscribe.service";
+import { Empty } from 'antd';
 
-const EmployeeManagement = () => {
+const SubscribeManagement = () => {
 
-  const [users, setUsers] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const allUsers = await UserService.getAllEmployeeContent();
-      if (allUsers !== undefined) {
-        if (allUsers?.length > 0) {
-          setUsers(allUsers);
-          setLoading(allUsers?.length > 0);
+    const fetchData = async () => {
+      const response = await SubscribeService.getAll();
+      if (response !== undefined) {
+        if (response?.length > 0) {
+          setData(response);
+          setLoading(response?.length > 0);
           // Navigate on success
           // Example: router.push('/'); // Assuming you have a router instance available
         }
       }
     };
-    fetchUsers().catch(error => console.error('Failed to fetch users:', error));
+    fetchData().catch(error => console.error('Failed to fetch data:', error));
   }, [])
 
   const onReload = async () => {
     //toast.success("Saved successfully!")
-    setUsers([]);
+    setData([]);
     setLoading(false);
-    const allUsers = await UserService.getAllEmployeeContent();
-    if (allUsers !== undefined) {
-      if (allUsers?.length > 0) {
-        setUsers(allUsers);
-        setLoading(allUsers?.length > 0);
+    const response = await SubscribeService.getAll();
+    if (response !== undefined) {
+      if (response?.length > 0) {
+        setData(response);
+        setLoading(response?.length > 0);
         toast.success("Reloaded successfully!")
         // Navigate on success
         // Example: router.push('/'); // Assuming you have a router instance available
@@ -43,12 +44,13 @@ const EmployeeManagement = () => {
     }
   }
 
-  const onUser = async (id: number) => {
+  const onDelete = async (id: number) => {
     //toast.success("Saved successfully!")
-    const res = await UserService.convertUser(id);
+    const res = await SubscribeService.delete(id);
     if (res !== undefined) {
-      if (res?.message == "User converted successfully!") {
-        toast.success("Converted successfully!")
+      if (res?.message == "Subscribe deleted successfully!") {
+        toast.success("Subscribe deleted successfully!")
+        onReload();
       }
       else
         toast.warn(res?.message)
@@ -57,9 +59,9 @@ const EmployeeManagement = () => {
 
   return (
     <>
-      <div className="p-8 rounded-lg shadow-three bg-white dark:bg-gray-dark">
+      <div className="p-8">
         <h1 className="mb-8 text-3xl font-bold leading-tight text-dark dark:text-body-color-dark sm:text-4xl sm:leading-tight">
-          Employee Management
+          Subscribe Management
         </h1>
         <div className="w-full mb-5">
           {
@@ -68,26 +70,20 @@ const EmployeeManagement = () => {
                 <thead className="bg-slate-100 dark:bg-black">
                   <tr>
                     <th className="border border-slate-300 p-3">UserName</th>
-                    <th className="border border-slate-300 p-3">FirstName</th>
-                    <th className="border border-slate-300 p-3">LastName</th>
                     <th className="border border-slate-300 p-3">Email</th>
-                    <th className="border border-slate-300 p-3">Phone</th>
-                    <th className="border border-slate-300 p-3">To User</th>
+                    <th className="border border-slate-300 p-3">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((item, index) =>
+                  {data.map((item, index) =>
                     <tr key={index} className="hover:bg-slate-100 dark:hover:bg-black">
-                      <td className="border border-slate-300 p-2">{item.username}</td>
-                      <td className="border border-slate-300 p-2">{item.firstname}</td>
-                      <td className="border border-slate-300 p-2">{item.lastname}</td>
+                      <td className="border border-slate-300 p-2">{item.name}</td>
                       <td className="border border-slate-300 p-2">{item.email}</td>
-                      <td className="border border-slate-300 p-2">{item.phone}</td>
                       <td className="border border-slate-300 text-center p-2 hover:text-body-color/70">
                         <button
-                          onClick={() => onUser(item.id)}
+                          onClick={() => onDelete(item.id)}
                         >
-                          Convert
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -97,7 +93,7 @@ const EmployeeManagement = () => {
               </table>
             ) :
               (
-                <span className="w-full dark:text-body-color-dark">Loading</span>
+                <div className="min-h-[300px] flex items-center justify-center"><Empty /></div>
               )
           }
         </div>
@@ -115,4 +111,4 @@ const EmployeeManagement = () => {
   );
 };
 
-export default EmployeeManagement;
+export default SubscribeManagement;

@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import Contact from "@/components/Contact";
+import ContactOfPage from "@/components/Contact/ContactOfPage";
 import ContactDescription from "@/components/Contact/ContactDescription";
 import { Metadata } from "next";
 
@@ -17,7 +17,7 @@ const ContactPage = () => {
         description="Welcome to Technical Wallet! Whether you have questions about our architectural designs, need assistance with an order, or are interested in custom services, we&apos;re here to help."
       />
       <ContactDescription />
-      <Contact />
+      <ContactOfPage />
     </>
   );
 };

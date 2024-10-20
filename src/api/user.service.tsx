@@ -28,7 +28,7 @@ interface AdminBoardResponse {
   // Define the structure of the response here
 }
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_TEST_API;
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_USER_API;
 
 class UserService {
   private static instance: UserService;
@@ -42,8 +42,8 @@ class UserService {
     return UserService.instance;
   }
 
-  async getPublicContent(): Promise<[]> {
-    return fetch(`${API_URL}all`, {
+  async getAll(): Promise<[]> {
+    return fetch(`${API_URL}getAll`, {
       method: 'GET',
       headers: {
         ...authHeader(),
@@ -57,7 +57,7 @@ class UserService {
       });
   }
 
-  async getAllEmployeeContent(): Promise<[]> {
+  /* async getAllEmployeeContent(): Promise<[]> {
     return fetch(`${API_URL}allEmployee`, {
       method: 'GET',
       headers: {
@@ -115,9 +115,9 @@ class UserService {
         }
         return response.json();
       });
-  }
+  } */
 
-  async convertEmployee(userid: number): Promise<GeneralContentResponse> {
+  /* async convertEmployee(userid: number): Promise<GeneralContentResponse> {
     return fetch(`${API_URL}updatetoemployee`, {
       method: 'POST',
       headers: {
@@ -147,7 +147,7 @@ class UserService {
       }
       return response.json();
     });
-  }
+  } */
 
   async delete(userid: number): Promise<GeneralContentResponse> {
     return fetch(`${API_URL}delete`, {
@@ -157,6 +157,38 @@ class UserService {
         ...authHeader(),
       },
       body: JSON.stringify({ userid }),
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    });
+  }
+
+  async getById(userid: number): Promise<{}> {
+    return fetch(`${API_URL}getById`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeader(),
+      },
+      body: JSON.stringify({ userid }),
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    });
+  }
+
+  async update(userid: string, username: string, firstname: string, lastname: string, email: string, phone: string, password: string): Promise<GeneralContentResponse> {
+    return fetch(`${API_URL}update`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeader(),
+      },
+      body: JSON.stringify({ userid, username, firstname, lastname, email, phone, password }),
     }).then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

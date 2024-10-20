@@ -1,11 +1,11 @@
-'use client';
-import { useEffect, useState } from "react";
-import { useSearchParams  } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import SectionTitle from "@/components/Common/SectionTitle";
 import SingleProduct from "@/components/Products/SingleProduct";
 import productsData from "@/components/Products/productsData";
 import { Suspense } from 'react'
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import ProductsOfPage from "@/components/Products/ProductsOfPage";
+import { Metadata } from "next";
 
 /* function Search() {
   const searchParams = useSearchParams();
@@ -13,20 +13,13 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
   const page = searchParams.get('page');
   return format;
 } */
+export const metadata: Metadata = {
+  title: "Products | Technical Wallet | Architectural Digital Products & Service",
+  description: "Technical Wallet | Architectural Digital Products & Service",
+  // other metadata
+};
 
-const Products = () => {
-  /* const searchParams = useSearchParams() */
-  const [hash, setHash] = useState('');
-  const [category, setCategory] = useState('');
-
-  useEffect(() => {
-    // Access the hash fragment
-    setHash(window.location.hash);
-  }, []);
-
-  /* const format = searchParams.get('format');
-  const page = searchParams.get('page'); */
-
+const Products = ({ params }) => {
   return (
     <>
       <Breadcrumb
@@ -44,7 +37,8 @@ const Products = () => {
           Products
         </h2>
       </div> */}
-      <section id="products" className="dark:bg-gray-dark py-16 md:py-20 lg:py-28">
+      <ProductsOfPage params={params.id} />
+      {/* <section id="products" className="dark:bg-gray-dark py-16 md:py-20 lg:py-28">
         <div className="container">
           <div className="grid grid-cols-1 md:gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {productsData.map((product) => (
@@ -52,7 +46,7 @@ const Products = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
