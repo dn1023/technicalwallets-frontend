@@ -125,7 +125,7 @@ class ProductService {
       });
   }
 
-  async getById(id: string): Promise<ProductDetailResponse> {
+  async getById(id: string) {
     return fetch(`${API_URL}getById`, {
       method: 'POST',
       headers: {
