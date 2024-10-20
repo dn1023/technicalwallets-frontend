@@ -6,6 +6,17 @@ interface ProductResponse {
   message?: string;
 }
 
+interface ProductDetailResponse {
+  title?: string;
+  content?: string;
+  oldprice?: string;
+  newprice?: string;
+  param1?: string;
+  param2?: string;
+  look?: string;
+  handshake?: string;
+}
+      
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_PRODUCT_API;
 
 class ProductService {
@@ -114,7 +125,7 @@ class ProductService {
       });
   }
 
-  async getById(id: string): Promise<[]> {
+  async getById(id: string): Promise<ProductDetailResponse> {
     return fetch(`${API_URL}getById`, {
       method: 'POST',
       headers: {
