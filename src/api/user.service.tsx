@@ -14,6 +14,12 @@ interface EmployeeContentResponse {
 interface GeneralContentResponse {
   // Define the structure of the response here
   message?: string;
+  username?: string;
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+  phone?: string;
+  id?: string;
 }
 
 interface UserBoardResponse {
@@ -165,7 +171,7 @@ class UserService {
     });
   }
 
-  async getById(userid: number): Promise<{}> {
+  async getById(userid: number): Promise<GeneralContentResponse> {
     return fetch(`${API_URL}getById`, {
       method: 'POST',
       headers: {
