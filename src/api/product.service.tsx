@@ -13,8 +13,8 @@ interface ProductDetailResponse {
   newprice?: string;
   param1?: string;
   param2?: string;
-  look?: string;
-  handshake?: string;
+  look?: number;
+  handshake?: number;
 }
       
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_PRODUCT_API;
