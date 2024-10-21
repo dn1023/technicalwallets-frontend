@@ -30,7 +30,7 @@ const HeroProducts = () => {
 
   return (
     <>
-      <section id="heroproducts" className="dark:bg-gray-dark pt-2 pb-16 md:pb-20 lg:pb-28">
+      <section id="heroproducts" className="dark:bg-gray-dark pt-2 pb-2 md:pb-2 lg:pb-2">
         <div className="w-full grid grid-flow-row-dense grid-cols-1 md:grid-cols-3 gap-2">
           {products.map((product) => (
             <SingleProduct key={product.id} product={product} />

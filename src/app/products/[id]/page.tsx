@@ -22,10 +22,12 @@ export const metadata: Metadata = {
 const Products = ({ params }) => {
   return (
     <>
-      <Breadcrumb
-        pageName="Products"
-        description="We offer a range of innovative digital architectural products designed to enhance your design process and improve project outcomes."
-      />
+      <div className="min-h-[300px] bg-[url('/images/background/helmet-drafting-tools_23-2147785530.jpg')] bg-cover bg-left-top bg-no-repeat">
+        <Breadcrumb
+          pageName="Products"
+          description="We offer a range of innovative digital architectural products designed to enhance your design process and improve project outcomes."
+        />
+      </div>
       {/* <div className="w-full max-w-[800px] mb-[50px]">
         <p className="text-base !leading-relaxed text-body-color md:text-lg uppercase">
           /HOME/CATEGORY/

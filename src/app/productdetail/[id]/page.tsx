@@ -12,10 +12,12 @@ export const metadata: Metadata = {
 const ProductDetailsPage = ({ params }) => {
   return (
     <>
-      <Breadcrumb
-        pageName="Product Detail"
-        description="We offer a range of innovative digital architectural products designed to enhance your design process and improve project outcomes."
-      />
+      <div className="min-h-[300px] bg-[url('/images/background/helmet-drafting-tools_23-2147785530.jpg')] bg-cover bg-left-top bg-no-repeat">
+        <Breadcrumb
+          pageName="Product Detail"
+          description="We offer a range of innovative digital architectural products designed to enhance your design process and improve project outcomes."
+        />
+      </div>
       <Product params={params.id} />
     </>
   );

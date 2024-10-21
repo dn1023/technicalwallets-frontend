@@ -37,7 +37,7 @@ const Product = (props: Props) => {
     setProducts([]);
     setLoading(false);
     const fetchProducts = async () => {
-      const res = await ProductService.getAll();
+      const res = await ProductService.getSome();
       if (res !== undefined) {
         if (res?.length > 0) {
           setProducts(res);
@@ -62,7 +62,7 @@ const Product = (props: Props) => {
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center mb-[50px] md:mb-[150px]">
             <div className="w-full px-4 lg:w-8/12 pb-[20px]">
-              <div className="mx-auto w-full flex flex-wrap items-center justify-center">
+              <div className="mx-auto w-full rounded-lg flex flex-wrap items-center justify-center">
                 {/* <Image 
                   src="/images/product/3d-rendering-wooden-house_23-2151264480.jpg" 
                   alt="Picture of the product" 
@@ -71,8 +71,9 @@ const Product = (props: Props) => {
                   height={600}
                 /> */}
                 <ImageAnd
-                  width={600}
+                  width={800}
                   src={API + "products/" + product.coverimage}
+                  className="rounded-lg"
                 />
                 {/* <ImageAnd.PreviewGroup
                   items={[
