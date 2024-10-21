@@ -15,7 +15,7 @@ const Hero = () => {
           <div className="-mx-4 flex flex-wrap items-center justify-center">
             <div className="w-full md:w-1/2 px-4">
               <div className="flex flex-col items-center justify-center">
-              <Image src="/images/favicon_large.png" alt="Picture of the hero" className=""  width={200} height={200} />
+              <Image src="/images/favicon_large.png" alt="Picture of the hero" className=""  width={500} height={500} />
                 {/* <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
                   Architectural Digital Products
                 </div>
