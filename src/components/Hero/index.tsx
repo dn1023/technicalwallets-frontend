@@ -9,7 +9,7 @@ import { Carousel as AntdCarousel } from 'antd';
 const Hero = () => {
   return (
     <>
-      <div className="w-full h-[900px] flex flex-wrap items-center bg-[url('/images/hero/background3.jpg')] bg-cover bg-left-top bg-no-repeat">
+      <div className="w-full h-[900px] flex flex-wrap items-center bg-[url('/images/hero/ant4.jpg')] bg-cover bg-left-top bg-no-repeat">
         {/* bg-[url('/images/hero/background1.jpg')] bg-cover bg-left-top bg-no-repeat */}
         <div className="container">
           <div className="-mx-4 flex flex-wrap items-center justify-center">
