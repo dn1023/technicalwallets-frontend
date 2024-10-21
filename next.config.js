@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.welovelaundry.uk',
+        hostname: 'api.technicalwallets.com',
       },
     ],
   },

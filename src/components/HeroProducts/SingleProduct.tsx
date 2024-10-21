@@ -25,6 +25,7 @@ const SingleProduct = ({ product }: { product: Product }) => {
           fill={true}
           style={{ objectFit: "cover" }}
         />
+
         {
           isShow &&
           <>
