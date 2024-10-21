@@ -411,7 +411,7 @@ const Header = () => {
                                 Palace
                               </Link>
                               <Link
-                                href="/products/Design_Catalog=Architecture_Design=Comm./Resid._Towers"
+                                href="/products/Design_Catalog=Architecture_Design=Comm.==Resid._Towers"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Comm./Resid. Towers
@@ -497,7 +497,7 @@ const Header = () => {
                               Portable Houses
                             </Link>
                             <Link
-                              href="/products/Design_Catalog=Industrial_Design=RV/Camper"
+                              href="/products/Design_Catalog=Industrial_Design=RV==Camper"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               RV/Camper
@@ -509,13 +509,13 @@ const Header = () => {
                               Tent
                             </Link>
                             <Link
-                              href="/products/Design_Catalog=Industrial_Design=Tiny_Restaurant/Cafe"
+                              href="/products/Design_Catalog=Industrial_Design=Tiny_Restaurant==Cafe"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Tiny Restaurant/Cafe
                             </Link>
                             <Link
-                              href="/products/Design_Catalog=Industrial_Design=Portable_Truck_Food/Cafe"
+                              href="/products/Design_Catalog=Industrial_Design=Portable_Truck_Food==Cafe"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Portable Truck Food/Cafe
@@ -527,7 +527,7 @@ const Header = () => {
                               Portable Ice Cream
                             </Link>
                             <Link
-                              href="/products/Design_Catalog=Industrial_Design=Kiosks/Exhibition"
+                              href="/products/Design_Catalog=Industrial_Design=Kiosks==Exhibition"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Kiosks/Exhibition
@@ -545,7 +545,7 @@ const Header = () => {
                               Lights
                             </Link>
                             <Link
-                              href="/products/Design_Catalog=Industrial_Design=Art/Decoration"
+                              href="/products/Design_Catalog=Industrial_Design=Art==Decoration"
                               className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             >
                               Art/Decoration
@@ -574,13 +574,13 @@ const Header = () => {
                                 Floating Houses
                               </Link>
                               <Link
-                                href="/products/Design_Catalog=Marine_Design=Floating_Restaurant/Cafe"
+                                href="/products/Design_Catalog=Marine_Design=Floating_Restaurant==Cafe"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Floating Restaurant/Cafe
                               </Link>
                               <Link
-                                href="/products/Design_Catalog=Marine_Design=Yacht/Boat"
+                                href="/products/Design_Catalog=Marine_Design=Yacht==Boat"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Yacht/Boat

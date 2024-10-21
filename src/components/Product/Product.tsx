@@ -10,6 +10,10 @@ import { useRouter } from 'next/navigation';
 import ProductService from "@/api/product.service";
 import SingleProduct from "@/components/Products/SingleProduct";
 import productsData from "@/components/Products/productsData";
+import CartService from "@/api/cart.service";
+import AuthService from "@/api/auth.service";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 interface Props {
   params: string;
@@ -48,8 +52,24 @@ const Product = (props: Props) => {
     fetchProducts().catch(error => console.error('Failed to fetch products:', error));
   }, []);
 
-  const onCart = () => {
-
+  const onCart = async () => {
+    const userid = AuthService.getCurrentUser() == null ? '0' : AuthService.getCurrentUser().id;
+    if (userid == '0') { toast.warn("Please sign in."); return; }
+    try {
+      //userid, productid, category, subcategory, subsubcategory, name, email, message, phone
+      const response = await CartService.register(userid, props.params, '', '', '', '', '', '', '');
+      if (response !== undefined) {
+        if (response?.message == "Cart registered successfully!") {
+          toast.success("Registered successfully!");
+        }
+        else
+          toast.warn(response?.message);
+      }
+    } catch (error) {
+      const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      toast.error("Server connection failed!");
+      toast.warning("Please try later.");
+    }
   }
 
   const onBuy = () => {
@@ -58,7 +78,8 @@ const Product = (props: Props) => {
 
   return (
     <>
-      <section id="product" className="pb-[100px] pt-[100px]">
+      <ToastContainer />
+      <section id="productdetail" className="pb-[100px] pt-[100px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center mb-[50px] md:mb-[150px]">
             <div className="w-full px-4 lg:w-8/12 pb-[20px]">

@@ -28,8 +28,7 @@ const ContactOfPage = () => {
     fetchUser().catch(error => console.error('Failed to fetch users:', error)); */
   }, [])
 
-  const onSend = async () =>
-  {
+  const onSend = async () => {
     if (email.trim() == '' || name.trim() == '' || phone.trim() == '' || message.trim() == '') {
       toast.warn("Please input correctly.")
       return;
@@ -72,55 +71,57 @@ const ContactOfPage = () => {
                   Our support team will get back to you ASAP via email.
                 </p>
                 <div className="-mx-4 flex flex-wrap">
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="name"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        User Name
-                      </label>
-                      <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Enter your User Name"
-                        className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
-                      />
+                  <div className="px-4 w-full grid grid-cols-1 md:grid-cols-3 md:space-x-2">
+                    <div className="">
+                      <div className="mb-8">
+                        <label
+                          htmlFor="name"
+                          className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                        >
+                          User Name
+                        </label>
+                        <input
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Enter your User Name"
+                          className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="email"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Your Email
-                      </label>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your Email"
-                        className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
-                      />
+                    <div className="">
+                      <div className="mb-8">
+                        <label
+                          htmlFor="email"
+                          className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                        >
+                          Your Email
+                        </label>
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter your Email"
+                          className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="telephone"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Your Telephone
-                      </label>
-                      <input
-                        type="telephone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Enter your Telephone"
-                        className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
-                      />
+                    <div className="">
+                      <div className="mb-8">
+                        <label
+                          htmlFor="telephone"
+                          className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                        >
+                          Your Telephone
+                        </label>
+                        <input
+                          type="telephone"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder="Enter your Telephone"
+                          className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="w-full px-4">
@@ -133,7 +134,7 @@ const ContactOfPage = () => {
                       </label>
                       <textarea
                         name="message"
-                        rows={5}
+                        rows={10}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Enter your Message"

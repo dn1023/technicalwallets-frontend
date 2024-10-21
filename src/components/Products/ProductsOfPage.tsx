@@ -27,7 +27,7 @@ const ProductsOfPage = (props: Props) => {
 
   useEffect(() => {
     //toast.success("Saved successfully!")
-    const catalogs = props.params.replace(/_/g, " ").split("%3D");;
+    const catalogs = props.params.replace(/_/g, " ").replace("%3D%3D", "/").split("%3D");;
     setProducts([]);
     setLoading(false);
     const fetchProducts = async () => {

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import OrderService from "@/api/order.service";
+import OrderService from "@/api/cart.service";
 import Modal from '@/components/Admin/Modal';
 import AuthService from "@/api/auth.service";
 

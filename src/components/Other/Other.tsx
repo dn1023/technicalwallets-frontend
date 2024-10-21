@@ -15,6 +15,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import HelpService from "@/api/help.service";
 import ReactPannellum, { getConfig, addScene, addHotSpot, setConfig } from "react-pannellum";
+import CartService from "@/api/cart.service";
+import AuthService from "@/api/auth.service";
 
 interface Props {
   params: string;
@@ -51,7 +53,10 @@ const Other = (props: Props) => {
   );
 
   useEffect(() => {
-    setPageName(catalogs.join(' / '));
+    if(catalogs[2] == '')
+      setPageName(catalogs[0].concat(' / ', catalogs[1]));
+    else
+      setPageName(catalogs.join(' / '));
   }, []);
 
   const onSend = async () => {
@@ -60,10 +65,12 @@ const Other = (props: Props) => {
       return;
     }
     try {
-      const response = await HelpService.register(userId, name, email, phone, message);
+      const userid = AuthService.getCurrentUser() == null ? '0' : AuthService.getCurrentUser().id;
+      //userid, productid, category, subcategory, subsubcategory, name, email, message, phone
+      const response = await CartService.register(userid, '', catalogs[0], catalogs[1], catalogs[2], name, email, phone, message);
       if (response !== undefined) {
-        if (response?.message == "Help registered successfully!") {
-          toast.success(response?.message);
+        if (response?.message == "Cart registered successfully!") {
+          toast.success("Registered successfully!");
           setName('');
           setEmail('');
           setPhone('');

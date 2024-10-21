@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import OrderService from "@/api/order.service";
+import OrderService from "@/api/cart.service";
 
 interface ModalProps {
   isOpen: boolean;

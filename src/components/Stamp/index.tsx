@@ -3,7 +3,8 @@ import Image from "next/image";
 import { Steps } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import HelpService from "@/api/help.service";
+import CartService from "@/api/cart.service";
+import AuthService from "@/api/auth.service";
 import { useState, useEffect } from 'react';
 
 const Stamp = () => {
@@ -19,10 +20,12 @@ const Stamp = () => {
       return;
     }
     try {
-      const response = await HelpService.register(userId, name, email, phone, message);
+      const userid = AuthService.getCurrentUser() == null ? '0' : AuthService.getCurrentUser().id;
+      //userid, productid, category, subcategory, subsubcategory, name, email, message, phone
+      const response = await CartService.register(userid, '', 'Stamp', '', '', name, email, phone, message);
       if (response !== undefined) {
-        if (response?.message == "Help registered successfully!") {
-          toast.success(response?.message);
+        if (response?.message == "Cart registered successfully!") {
+          toast.success("Registered successfully!");
           setName('');
           setEmail('');
           setPhone('');
@@ -39,33 +42,35 @@ const Stamp = () => {
   }
 
   return (
-    <section id="contactdesription" className="overflow-hidden py-16 md:py-20 lg:py-28">
-      <div className="container">
-        <div className="">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4">
-              {/* <h3 className="mb-4 text-2xl font-bold leading-tight text-dark dark:text-body-color-dark">
+    <>
+      <ToastContainer />
+      <section id="contactdesription" className="overflow-hidden py-16 md:py-20 lg:py-28">
+        <div className="container">
+          <div className="">
+            <div className="-mx-4 flex flex-wrap items-center">
+              <div className="w-full px-4">
+                {/* <h3 className="mb-4 text-2xl font-bold leading-tight text-dark dark:text-body-color-dark">
                 What is a Digital Stamp?
               </h3> */}
-              <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                My team is highly qualified and experienced in architectural, structural, and MEP design and concepturalization of ideas.
-              </p>
-              <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                We can design and review any kind of Architecture, Structural or CIVIL and MEP design and give you PE STAMP from licensed engineers USA, Canada, Australia and UK.
-              </p>
-              <h3 className="mb-4 text-2xl font-bold leading-tight text-dark dark:text-body-color-dark">
-                Licensed & Registered Professional Engineer(P.E.) and Architect in team at:
-              </h3>
-              <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                AL, AR, AZ, CA, CO, CT,DC, DE, FL, GA, HI, ID, IN, IO, IL, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, TN, TX, UT, VA, VT, WA, WI, WV, WY on USA and AB, BC, NB, NS, PEI in addition to on Canada.
-              </p>
-              <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                Please attach your files as links in the message box below.
-              </p>
+                <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+                  My team is highly qualified and experienced in architectural, structural, and MEP design and concepturalization of ideas.
+                </p>
+                <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+                  We can design and review any kind of Architecture, Structural or CIVIL and MEP design and give you PE STAMP from licensed engineers USA, Canada, Australia and UK.
+                </p>
+                <h3 className="mb-4 text-2xl font-bold leading-tight text-dark dark:text-body-color-dark">
+                  Licensed & Registered Professional Engineer(P.E.) and Architect in team at:
+                </h3>
+                <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+                  AL, AR, AZ, CA, CO, CT,DC, DE, FL, GA, HI, ID, IN, IO, IL, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, TN, TX, UT, VA, VT, WA, WI, WV, WY on USA and AB, BC, NB, NS, PEI in addition to on Canada.
+                </p>
+                <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+                  Please attach your files as links in the message box below.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-full flex flex-wrap pt-16 md:pt-20 lg:pt-28">
+          <div className="w-full flex flex-wrap pt-16 md:pt-20 lg:pt-28">
             <div
               className="w-full mb-12 rounded-lg"
               data-wow-delay=".15s
@@ -153,8 +158,10 @@ const Stamp = () => {
               </div>
             </div>
           </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
+
   );
 };
 
