@@ -37,7 +37,7 @@ const Product = (props: Props) => {
     setProducts([]);
     setLoading(false);
     const fetchProducts = async () => {
-      const res = await ProductService.getSome();
+      const res = await ProductService.getAll();
       if (res !== undefined) {
         if (res?.length > 0) {
           setProducts(res);
