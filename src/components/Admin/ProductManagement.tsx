@@ -224,14 +224,14 @@ const ProductManagement = () => {
       toast.warning("Please select the catalog.");
     else
     {
-      setTitle('');
-      setContent('');
+      setTitle('Technical Wallet');
+      setContent('Our architectural design products and services offer a comprehensive approach to transforming your vision into reality. We specialize in creating cutting-edge architectural solutions that blend functionality with aesthetic appeal.');
       setCoverImage(null);
       /* fileInputRef.current.value = ''; */
-      setOldPrice('');
-      setNewPrice('');
-      setParam1('');
-      setParam2('');
+      setOldPrice('0');
+      setNewPrice('0');
+      setParam1('Size: Adjustable');
+      setParam2('Finish: As per Client request');
       setLook(0);
       setHandShake(0);
       setIsUpdate(false);

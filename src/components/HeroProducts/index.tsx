@@ -37,7 +37,7 @@ const HeroProducts = () => {
           ))}
           {
             !loading &&
-            <div className="min-h-[300px] flex items-center justify-center"><Empty /></div>
+            <div className="w-full min-h-[300px] flex items-center justify-center"><Empty /></div>
           }
         </div>
         {/* <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
