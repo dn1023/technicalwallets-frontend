@@ -15,7 +15,8 @@ const Hero = () => {
           <div className="-mx-4 flex flex-wrap items-center justify-center">
             <div className="w-full md:w-1/2 px-4">
               <div className="flex flex-col items-center justify-center">
-                <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
+              <Image src="/images/favicon.png" alt="Picture of the hero" className=""  width={300} height={300} />
+                {/* <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
                   Architectural Digital Products
                 </div>
                 <div className="w-full text-center px-5 py-10 font-bold leading-tight backdrop-blur-sm text-black dark:text-white md:text-amber-500 sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
@@ -32,7 +33,7 @@ const Hero = () => {
                   >
                     SHOW PRODUCTS
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div className="w-1/2 px-4 flex flex-wrap">
