@@ -3,7 +3,7 @@ import Stamp from "@/components/Stamp";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Technical Wallet | Architectural Digital Products & Service",
+  title: "Stamp | Technical Wallet | Architectural Digital Products & Service",
   description: "Technical Wallet | Architectural Digital Products & Service",
   // other metadata
 };
@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 const StampPage = () => {
   return (
     <>
-      <Breadcrumb
-        pageName="Get Stamp"
-        description="We provide official stamps on drawings, affirming their adherence to professional and regulatory standards."
-      />
+      <div className="min-h-[300px] bg-[url('/images/background/drafting-tools-near-plans-helmet_23-2147785527.jpg')] bg-cover bg-left-top bg-no-repeat">
+        <Breadcrumb
+          pageName="Get Stamp"
+          description="We provide official stamps on drawings, affirming their adherence to professional and regulatory standards."
+        />
+      </div>
       <Stamp />
     </>
   );

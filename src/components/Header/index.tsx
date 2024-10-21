@@ -192,40 +192,8 @@ const Header = () => {
     <>
       {/* <div className="bg-[#00c6ff] dark:bg-gray-dark hidden lg:block">
         <div className="w-full flex items-center justify-between py-[10px] container">
-          <div className="flex items-center justify-start space-x-2">
-            <div className="w-[40px] h-[40px] flex items-center justify-center bg-lime-500 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" /></svg>
-            </div>
-            <div className="flex flex-col">
-              <div className="text-lime-700 text-lg">
-                &ensp;Address
-              </div>
-              <div className="dark:text-body-color-dark">
-                &ensp;31 Barking Rd, London E6 1PW
-              </div>
-            </div>
-            <div className="w-[40px] h-[40px] flex items-center justify-center bg-lime-500 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg>
-            </div>
-            <div className="flex flex-col">
-              <div className="text-lime-700 text-lg">
-                &ensp;Mail Us
-              </div>
-              <div className="dark:text-body-color-dark">
-              &ensp;iftikhar.bhalli@gmail.com
-              </div>
-            </div>
-            <div className="w-[40px] h-[40px] flex items-center justify-center bg-lime-500 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M480-80q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T120-440q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-800q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-440q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-80Zm0-360Zm112 168 56-56-128-128v-184h-80v216l152 152ZM224-866l56 56-170 170-56-56 170-170Zm512 0 170 170-56 56-170-170 56-56ZM480-160q117 0 198.5-81.5T760-440q0-117-81.5-198.5T480-720q-117 0-198.5 81.5T200-440q0 117 81.5 198.5T480-160Z"/></svg>
-            </div>
-            <div className="flex flex-col">
-              <div className="text-lime-700 text-lg">
-                &ensp;Opening
-              </div>
-              <div  className="dark:text-body-color-dark">
-                &ensp;08:00 ~ 20:00
-              </div>
-            </div>
+          <div className="flex items-center">
+            Technical Wallet
           </div>
           <div className="flex items-center justify-end space-x-2">
             <Link
@@ -693,13 +661,13 @@ const Header = () => {
                             convert[0] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Conceptual_Design=Blueprints"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Blueprints
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Conceptual_Design=3D_Animation"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 3D Animation
@@ -721,13 +689,13 @@ const Header = () => {
                             convert[1] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Blueprints=3D_Visualization"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 3D Visualization
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Blueprints=3D_Animation"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 3D Animation
@@ -749,19 +717,19 @@ const Header = () => {
                             convert[2] &&
                             <>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Hand_Sketch=Conceptual_Design"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Conceptual Design
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Hand_Sketch=Blueprints"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 Blueprints
                               </Link>
                               <Link
-                                href="/#offers"
+                                href="/other/Design_Convert=Hand_Sketch=3D_Animation"
                                 className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                               >
                                 3D Animation
@@ -783,24 +751,24 @@ const Header = () => {
                         }
                         </button>
                         <div className={`${status[2] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
-                          <button
-                            onClick={() => {}}
+                          <Link
+                            href="/other/Drawing_Prepare=Shop_Drawing="
                             className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                           >
                             <p>Shop Drawing</p>&nbsp;&nbsp;
-                          </button>
-                          <button
-                            onClick={() => {}}
+                          </Link>
+                          <Link
+                            href="/other/Drawing_Prepare=Constructions_Drawing="
                             className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                           >
                             <p>Constructions Drawing</p>&nbsp;&nbsp;
-                          </button>
-                          <button
-                            onClick={() => {}}
+                          </Link>
+                          <Link
+                            href="/other/Drawing_Prepare=Fabrication_Drawing="
                             className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                           >
                             <p>Fabrication Drawing</p>&nbsp;&nbsp;
-                          </button>
+                          </Link>
                         </div>
                     </li>
                     <li className="group relative">

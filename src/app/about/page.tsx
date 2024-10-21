@@ -12,10 +12,12 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <>
-      <Breadcrumb
-        pageName="About"
-        description="Technical Wallet provides a variety of design services that cater to different styles and needs, ensuring visually appealing and functional solutions for both residential and commercial spaces."
-      />
+      <div className="min-h-[300px] bg-[url('/images/background/helmet-drafting-tools_23-2147785530.jpg')] bg-cover bg-left-top bg-no-repeat">
+        <Breadcrumb
+          pageName="About"
+          description="Technical Wallet provides a variety of design services that cater to different styles and needs, ensuring visually appealing and functional solutions for both residential and commercial spaces."
+        />
+      </div>
       <About />
     </>
   );

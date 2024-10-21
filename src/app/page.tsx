@@ -10,6 +10,7 @@ import Video from "@/components/Video";
 import Choice from "@/components/Choice";
 import Offers from "@/components/Offers";
 import Products from "@/components/Products";
+import HeroProducts from "@/components/HeroProducts";
 import Choose from "@/components/Choose";
 import { Metadata } from "next";
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,20 +28,13 @@ export default function Home() {
       <ToastContainer />
       <ScrollUp />
       <Hero />
-      <Features />
+      <HeroProducts/>
+      {/* <Features />
       <Products />
       <Offers />
       <Choose/>
       <Video />
       <Choice />
-      <Contact />
-      {/*
-      <Brands />
-      <AboutSectionOne />
-      <AboutSectionTwo /> 
-      <Testimonials />
-      <Pricing />
-      <Blog />
       <Contact /> */}
     </>
   );

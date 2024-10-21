@@ -11,6 +11,10 @@ import { useRouter } from 'next/navigation';
 import ProductService from "@/api/product.service";
 import SingleProduct from "@/components/Products/SingleProduct";
 import productsData from "@/components/Products/productsData";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import HelpService from "@/api/help.service";
+import ReactPannellum, { getConfig, addScene, addHotSpot, setConfig } from "react-pannellum";
 
 interface Props {
   params: string;
@@ -21,123 +25,171 @@ const Other = (props: Props) => {
   const API = process.env.NEXT_PUBLIC_BACKEND_API;
   const catalogs = props.params.replace(/_/g, " ").split("%3D");
 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [userId, setUserId] = useState('');
+  const [pageName, setPageName] = useState('');
+
+  const config = {
+    sceneId: "circle",
+    autoRotate: -2,
+    autoLoad: true,
+    compass: true,
+  }
+
+  const [description, setDescription] = useState(
+    {
+      "Conceptual Design" : "Transform your conceptual designs into precise blueprints. At Technical Wallet, we excel in converting your creative ideas into detailed blueprints essential for accurate project execution. Our experienced team uses advanced software and tools to meticulously craft blueprints that are not only visually appealing but also technically precise. We understand the critical importance of accuracy in every line and measurement, ensuring that your vision is faithfully represented. Trust us to deliver blueprints that lay the foundation for successful projects, significantly reducing the risk of errors and enhancing overall efficiency.",
+      "BluePrints" : "Transform your designs into precise 3D renderings and visualization designs. At Technical Wallet, converting your creative ideas into accurate blueprints is our forte. We meticulously transform your designs into detailed blueprints essential for flawless execution during the construction phase. Our team of experienced professionals employs advanced software and tools to create blueprints that are visually compelling and technically robust. We prioritize precision in every line and measurement, ensuring that your vision is precisely translated into reality. Trust us to provide you with blueprints that form the solid foundation for your successful projects, minimizing risks and maximizing efficiency.",
+      "Hand Sketch" : "Transform your hand sketches into precise 3D renderings, visualization designs, or blueprints—or even combine both. At Technical Wallet, converting your creative ideas from simple sketches to detailed visual representations is our expertise. Our experienced team uses advanced software and tools to meticulously transform your sketches into high-quality, technically sound renderings or blueprints. We emphasize precision in every line and measurement, ensuring that your vision is accurately captured and represented. Trust us to provide you with renderings and blueprints that not only look impressive but also lay the groundwork for successful project execution, minimizing risks and boosting efficiency.",
+      "Shop Drawing" : "Get precise IFC / Shop drawings tailored to your project. At Technical Wallet, we produce detailed IFC and shop drawings crucial for the accurate manufacturing and installation of building components. Our skilled team works closely with you to understand every nuance of your project, ensuring that all details are thoroughly documented. These drawings provide clear instructions and detailed specifications for manufacturers and installers, reducing the risk of errors and enhancing communication. Utilizing industry-standard practices and advanced technology, we deliver drawings that are both practical and highly detailed. Choosing Technical Wallet for your IFC and shop drawings ensures that your components are fabricated and installed to the highest standards of quality and precision.",
+      "Constructions Drawing" : "Get precise construction drawings tailored to your project. At Technical Wallet, we produce detailed construction drawings essential for the accurate execution of your building projects. Our skilled team works closely with you to grasp the complexities of your project, ensuring that every detail is meticulously documented. These drawings provide clear instructions and specifications for construction teams, minimizing the risk of miscommunication and construction errors. Utilizing industry-standard practices and the latest technology, we ensure that our drawings are both functional and informative. By choosing Technical Wallet for your construction drawings, you ensure that your project is constructed to the highest standards of accuracy and quality.",
+      "Fabrication Drawing" : "Get precise fabrication drawings tailored to your project. At Technical Wallet, we produce detailed fabrication drawings that form the backbone of your manufacturing process. Our skilled team collaborates closely with you to understand the intricacies of your project, capturing every detail with accuracy. These drawings provide clear instructions and specifications for fabricators, thereby minimizing the risk of miscommunication and errors. Utilizing industry-standard practices and cutting-edge technology, we ensure that our drawings are both functional and visually informative. Choosing Technical Wallet for your fabrication drawings guarantees that your project is constructed to the highest standards of quality and precision.",
+    }
+  );
 
   useEffect(() => {
-    
+    setPageName(catalogs.join(' / '));
   }, []);
 
-  const onCart = () => {
-
+  const onSend = async () => {
+    if (email.trim() == '' || name.trim() == '' || phone.trim() == '' || message.trim() == '') {
+      toast.warn("Please input correctly.")
+      return;
+    }
+    try {
+      const response = await HelpService.register(userId, name, email, phone, message);
+      if (response !== undefined) {
+        if (response?.message == "Help registered successfully!") {
+          toast.success(response?.message);
+          setName('');
+          setEmail('');
+          setPhone('');
+          setMessage('');
+        }
+        else
+          toast.warn(response?.message);
+      }
+    } catch (error) {
+      const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      toast.error("Server connection failed!");
+      toast.warning("Please try later.");
+    }
   }
 
-  const onBuy = () => {
-
-  }
 
   return (
     <>
-      <Breadcrumb
-        pageName={catalogs[0] + "/" + catalogs[1] + catalogs[2] && "/" + catalogs[3] }
-        description="We offer a range of innovative digital architectural products designed to enhance your design process and improve project outcomes."
-      />
-      <section id="product" className="pb-[100px] pt-[100px]">
+      <ToastContainer />
+      <div className="min-h-[500px] bg-[url('/images/background/architectural-blueprints.jpg')] bg-cover bg-left-top bg-no-repeat">
+        <Breadcrumb
+          pageName={pageName}
+          description={description[catalogs[1]]}
+        />
+      </div>
+      {/* <ReactPannellum
+        id="1"
+        sceneId="circle"
+        imageSource="/images/panorama/modern_bathroom.jpg"
+        config={config}
+        className="w-full"
+        style={{
+          width: "600px",
+          height: "400px",
+          background: "#000000"
+        }}
+      /> */}
+      <section id="other" className="overflow-hidden py-16 md:py-20 lg:py-28">
         <div className="container">
-          <div className="-mx-4 flex flex-wrap justify-center mb-[50px] md:mb-[150px]">
-            <div className="w-full px-4 lg:w-8/12 pb-[20px]">
-              <div className="mx-auto w-full flex flex-wrap items-center justify-center">
-                {/* <Image 
-                  src="/images/product/3d-rendering-wooden-house_23-2151264480.jpg" 
-                  alt="Picture of the product" 
-                  style={{objectFit: "cover"}} 
-                  width={600} 
-                  height={600}
-                /> */}
-                <ImageAnd
-                  width={600}
-                  src={API + "products/" + product.coverimage}
-                />
-                {/* <ImageAnd.PreviewGroup
-                  items={[
-                    '/images/product/luxurious-villa-with-modern-architectural-design_23-2151694040.jpg',
-                    '/images/product/photorealistic-house-with-wooden-architecture-timber-structure_23-2151302598.jpg',
-                    '/images/product/3d-rendering-wooden-house_23-2151264400.jpg',
-                  ]}
-                >
-                  <ImageAnd
-                    width={600}
-                    src="/images/product/3d-rendering-wooden-house_23-2151264480.jpg"
-                  />
-                </ImageAnd.PreviewGroup> */}
-                {/* className="object-cover object-center" <Image src="/images/services/trans.png" alt="offer image" className="absolute" width={300} height={450} /> */}
-              </div>
-            </div>
-            <div className="w-full px-4 lg:w-4/12 max-w-[600px] pt-[20px] lg:pt-0">
-              <div>
-                <p className="text-sm !leading-relaxed text-body-color uppercase">Technical Wallet</p>
-                <div className="mb-8 text-xl font-bold leading-tight text-black dark:text-white sm:text-xl sm:leading-tight">
-                  {product.title}
-                </div>
-                <div className="mb-10 flex flex-wrap items-center justify-between border-b border-body-color border-opacity-10 pb-4 dark:border-white dark:border-opacity-10">
-                  <div className="flex flex-wrap items-center">
-                    <div className="mb-5 flex items-center">
-                      <div className="flex text-base font-medium text-body-color">
-                        <p className="line-through">${product.oldprice}USD</p>
-                        &nbsp;&nbsp;&nbsp;<p>${product.newprice}USD</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mb-5">
-                    <div
-                      className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white"
+          <div className="w-full flex flex-wrap">
+            <div
+              className="w-full mb-12 rounded-lg"
+              data-wow-delay=".15s
+                "
+            >
+              <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl">
+                Need Help?
+              </h2>
+              <p className="mb-12 text-base font-medium text-body-color">
+                Our support team will get back to you ASAP via email.
+              </p>
+              <div className="w-full grid grid-cols-1 md:grid-cols-3 md:space-x-2">
+                <div className="">
+                  <div className="mb-8">
+                    <label
+                      htmlFor="name"
+                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
                     >
-                      Design
-                    </div>
+                      User Name
+                    </label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Enter your User Name"
+                      className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                    />
                   </div>
                 </div>
-                <div>
-                  <pre className="text-wrap mb-10 text-base font-medium leading-relaxed text-body-color sm:leading-relaxed lg:leading-relaxed xl:leading-relaxed">
-                    {product.content}
-                  </pre>
-                  <p className="text-base font-medium leading-relaxed text-body-color sm:leading-relaxed lg:leading-relaxed xl:leading-relaxed">
-                    {product.param1}
-                  </p>
-                  <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:leading-relaxed lg:leading-relaxed xl:leading-relaxed">
-                    {product.param2}
-                  </p>
+                <div className="">
+                  <div className="mb-8">
+                    <label
+                      htmlFor="email"
+                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                    >
+                      Your Email
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your Email"
+                      className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-wrap justify-end">
-                  <button
-                    onClick={onCart}
-                    className="bg-amber-500 px-7 py-3 text-base font-semibold text-white transition delay-150 duration-300 ease-in-out hover:bg-amber-500/80 rounded-lg"
-                  >
-                    Order
-                  </button>
-                  {/* <button
-                    onClick={() => onBuy}
-                    className="bg-amber-500 px-7 py-3 text-base font-semibold text-white transition delay-150 duration-300 ease-in-out hover:bg-amber-500/80 rounded-lg"
-                  >
-                    Buy it now
-                  </button> */}
+                <div className="">
+                  <div className="mb-8">
+                    <label
+                      htmlFor="telephone"
+                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                    >
+                      Your Telephone
+                    </label>
+                    <input
+                      type="telephone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="Enter your Telephone"
+                      className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                    />
+                  </div>
                 </div>
               </div>
+              <div className="w-full mb-8">
+                <label
+                  htmlFor="message"
+                  className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                >
+                  Your Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={10}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Enter your Message"
+                  className="border-stroke w-full resize-none rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                ></textarea>
+              </div>
+              <div className="w-full">
+                <button onClick={onSend} className="text-nowrap rounded-lg bg-primary px-7 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                  SUBMIT MESSAGE
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="w-full max-w-[800px] mb-[50px] pt-[20px] pt-[100px]">
-            <h2 className="mb-4 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-              You may also like:
-            </h2>
-          </div>
-          <div className="mb-[50px] md:mb-[150px] grid grid-cols-1 md:gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => (
-              <SingleProduct key={product.id} product={product} />
-            ))}
-            {
-              !loading &&
-              <div className="min-h-[300px] flex items-center justify-center"><Empty /></div>
-            }
           </div>
         </div>
       </section>

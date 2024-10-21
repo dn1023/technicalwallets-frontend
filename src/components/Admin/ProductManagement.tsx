@@ -227,7 +227,7 @@ const ProductManagement = () => {
       setTitle('');
       setContent('');
       setCoverImage(null);
-      fileInputRef.current.value = '';
+      /* fileInputRef.current.value = ''; */
       setOldPrice('');
       setNewPrice('');
       setParam1('');

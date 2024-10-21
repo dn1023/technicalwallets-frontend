@@ -45,13 +45,13 @@ const Hero = () => {
             </div> */}
             <div className="hidden 2xl:block md:relative w-full md:w-1/2 flex flex-wrap">
               <div className="absolute inset-0 flex flex-col justify-center items-center -left-32 -translate-y-40 z-[1] rotate-6 drop-shadow-xl rounded-lg">
-                <Image src="/images/hero/hero1.jpg" alt="Picture of the hero" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110"  width={400} height={400} />
+                <Image src="/images/hero/hero1.png" alt="Picture of the hero" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110"  width={400} height={400} />
               </div>
               <div className="absolute flex flex-col justify-center items-center drop-shadow-xl right-0 -bottom-16 rounded-lg">
-                <Image src="/images/hero/hero4.jpg" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="Picture of the hero" width={400} height={400} />
+                <Image src="/images/hero/hero2.png" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="Picture of the hero" width={400} height={400} />
               </div>
               <div className="absolute inset-0 flex flex-col justify-center items-center left-12 -rotate-12 translate-y-40 z-[2] drop-shadow-xl rounded-lg">
-                <Image src="/images/hero/hero3.jpg" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="Picture of the hero" width={400} height={400} />
+                <Image src="/images/hero/hero3.png" className="rounded-lg border-solid border-2 border-white shadow-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" alt="Picture of the hero" width={400} height={400} />
               </div>
             </div>
             {/* <div className="w-full px-4 lg:w-6/12">
