@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import HelpService from "@/api/help.service";
-import Modal from '@/components/Admin/Modal';
 import { Empty } from 'antd';
 
 const MessageManagement = () => {
