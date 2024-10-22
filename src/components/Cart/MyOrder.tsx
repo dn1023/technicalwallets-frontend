@@ -6,19 +6,55 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import AuthService from "@/api/auth.service";
+import CartService from "@/api/cart.service";
+import { Empty } from 'antd';
 
 const MyOrder = () => {
 
-  const [orders, setOrders] = useState([]);
+  const [carts, setCarts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderId, setOrderId] = useState(0);
 
   useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    const fetchData = async () => {
+      const res = await CartService.getByUserId(user.id);
+      if (res !== undefined) {
+        if (res?.length > 0) {
+          setCarts(res);
+          setLoading(res?.length > 0);
+        }
+        else {
+          toast.warn(res);
+        }
+      }
+    };
+    fetchData().catch(error => console.error('Failed to fetch data:', error));
   }, [])
 
   const onReload = async () => {
-    
+    setCarts([]);
+    setLoading(false);
+    const user = AuthService.getCurrentUser();
+    const res = await CartService.getByUserId(user.id);
+    if (res !== undefined) {
+      if (res?.length > 0) {
+        console.log(res);
+        setCarts(res);
+        setLoading(res?.length > 0);
+        toast.success("Reloaded successfully!")
+        // Navigate on success
+        // Example: router.push('/'); // Assuming you have a router instance available
+      }
+      else {
+        toast.warn(res);
+      }
+    }
+  }
+
+  const onUpdate = (id: string) => {
+
   }
 
   return (
@@ -33,53 +69,36 @@ const MyOrder = () => {
               <table className="w-full border-collapse border border-slate-400 table-auto text-dark dark:text-body-color-dark">
                 <thead className="bg-slate-100 dark:bg-gray-dark">
                   <tr>
-                    <th className="border border-slate-300 p-3">OrderID</th>
-                    <th className="border border-slate-300 p-3">CollectionDate</th>
-                    <th className="border border-slate-300 p-3 ">CollectionTime</th>
-                    <th className="border border-slate-300 p-3">DeliveryDate</th>
-                    <th className="border border-slate-300 p-3">DeliveryTime</th>
-                    <th className="border border-slate-300 p-3">Detail</th>
+                    <th className="border border-slate-300 p-3">ProductID</th>
+                    <th className="border border-slate-300 p-3">Category</th>
+                    <th className="border border-slate-300 p-3">SubCategory</th>
+                    <th className="border border-slate-300 p-3">SubSubCategory</th>
+                    <th className="border border-slate-300 p-3">Message</th>
+                    <th className="border border-slate-300 p-3">Update</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((item, index) =>
-                    <tr key={index}>
-                      <td className="border border-slate-300 p-2">{item.id}</td>
-                      <td className="border border-slate-300 p-2">
-                        {
-                          new Date(Number(item.collectiondate)).toLocaleDateString('en-US', {
-                            weekday: 'short',
-                            day: 'numeric',
-                            month: 'short'
-                          })
-                        }
-                      </td>
-                      <td className="border border-slate-300 p-2">{item.collectiontime}</td>
-                      <td className="border border-slate-300 p-2">
-                        {
-                          new Date(Number(item.deliverydate)).toLocaleDateString('en-US', {
-                            weekday: 'short',
-                            day: 'numeric',
-                            month: 'short'
-                          })
-                        }
-                      </td>
-                      <td className="border border-slate-300 p-2">{item.deliverytime}</td>
+                  {carts.map((item, index) =>
+                    <tr key={index} className="hover:bg-slate-100 dark:hover:bg-black">
+                      <td className="border border-slate-300 p-2">{item.productid}</td>
+                      <td className="border border-slate-300 p-2">{item.category}</td>
+                      <td className="border border-slate-300 p-2">{item.subcategory}</td>
+                      <td className="border border-slate-300 p-2">{item.subsubcategory}</td>
+                      <td className="border border-slate-300 p-2">{item.message}</td>
                       <td className="border border-slate-300 text-center p-2 hover:text-body-color/70">
                         <button
-                          onClick={() => { setIsModalOpen(true); setOrderId(item.id); }}
+                          onClick={() => { setIsModalOpen(true); onUpdate(item.id); }}
                         >
-                          Detail
+                          Update
                         </button>
                       </td>
                     </tr>
                   )}
-
                 </tbody>
               </table>
             ) :
               (
-                <span className="w-full text-red">Loading</span>
+                <div className="min-h-[300px] flex items-center justify-center"><Empty /></div>
               )
           }
         </div>

@@ -65,9 +65,9 @@ const Hero = () => {
         <video
           className="w-full object-cover"
           src="/images/video/back.mp4"
-          controls
           autoPlay
           loop
+          muted
         >
           <source src="/images/video/back1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
