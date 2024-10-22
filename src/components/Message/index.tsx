@@ -20,12 +20,12 @@ const MessageItem = ({ content, own }) => {
             />
           </div>
           <div className="w-full bg-slate-100 text-base px-2 py-2 text-black rounded-lg mr-3">
-            { content }
+            {content}
           </div>
         </div> :
         <div className="w-full flex flex-nowrap justify-end">
           <div className="w-full bg-primary text-base px-2 py-2 text-white rounded-lg ml-12">
-            { content }
+            {content}
           </div>
         </div>
       }
@@ -48,14 +48,16 @@ export default function Message() {
     socket.on("from_admin", (msg) => {
       setMessages((prev) => [...prev, msg]);
     })
-    if(user != null)
-    {
+    if (user != null) {
       setUserId(user.id);
       setUserEmail(user.email);
       socket.emit('register', user.email);
+    } else {
+      console.error("No user is currently logged in.");
+      // Handle the case when user is null, e.g., show a message or redirect
     }
-    
-    return () =>{
+
+    return () => {
       socket.off("from_admin");
       socket.off("register");
     };
@@ -63,13 +65,15 @@ export default function Message() {
 
   const sendMessage = () => {
     const user = AuthService.getCurrentUser();
-    if(user != null)
-    {
+    if (user != null) {
       setUserId(user.id);
       setUserEmail(user.email);
       socket.emit('register', user.email);
+    } else {
+      console.error("No user is currently logged in.");
+      // Handle the case when user is null, e.g., show a message or redirect
     }
-    const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId:"technicalwallet.ceo@gmail.com" }
+    const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId: "technicalwallet.ceo@gmail.com" }
     setMessages((prev) => [...prev, msg]);
     socket.emit("to_admin", msg);
   };
@@ -113,7 +117,7 @@ export default function Message() {
               </div> */}
               {
                 messages.map((message, index) => (
-                  <MessageItem key={index} content={message.content} own={ message.userId == 1 ? true: false }/>
+                  <MessageItem key={index} content={message.content} own={message.userId == 1 ? true : false} />
                 ))
               }
               {/* <div className="w-full flex flex-nowrap">
