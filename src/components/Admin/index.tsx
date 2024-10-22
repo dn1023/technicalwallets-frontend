@@ -22,8 +22,10 @@ import ProductManagement from "@/components/Admin/ProductManagement"
   description: "Laundry and Dry Cleaning in LonDon",
   // other metadata
 }; */
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 const Admin = () => {
+  const size = useWindowSize();
   const [pageIndex, setPageIndex] = useState(0);
   return (
     <>
@@ -148,7 +150,12 @@ const Admin = () => {
                 </ul>
               </div> */}
             </div>
-            <div className="w-full px-10 pt-[50px] lg:w-9/12 min-h-[850px]">
+            <div 
+              className="w-full px-10 pt-[50px] lg:w-9/12"
+              style={{
+                height: `${`${(size.height ?? 850) - 90}px`}`,
+              }}
+            >
               <div className={`${pageIndex === 0 ? "block" : "hidden"}`}><Profile /></div>
               <div className={`${pageIndex === 1 ? "block" : "hidden"}`}><UserManagement /></div>
               <div className={`${pageIndex === 2 ? "block" : "hidden"}`}><SubscribeManagement /></div>

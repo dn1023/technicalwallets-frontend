@@ -22,7 +22,8 @@
     "react-modal-video": "^2.0.1",
     "react-pannellum": "^0.2.16",
     "react-responsive-carousel": "^3.2.23",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "socket.io-client": "^4.8.0"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",
