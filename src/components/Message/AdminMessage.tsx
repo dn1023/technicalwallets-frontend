@@ -50,7 +50,6 @@ const AdminMessage = () => {
 
   useEffect(() => {
     socket.on("to_admin", (msg) => {
-      console.log(msg);
       setMessages((prev) => [...prev, msg]);
     })
 
