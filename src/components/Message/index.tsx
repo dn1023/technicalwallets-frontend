@@ -42,9 +42,9 @@ export default function Message() {
   const [userId, setUserId] = useState('0');
   const [userEmail, setUserEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
-  const user = AuthService.getCurrentUser();
 
   useEffect(() => {
+    const user = AuthService.getCurrentUser();
     socket.on("from_admin", (msg) => {
       setMessages((prev) => [...prev, msg]);
       console.log(msg);
@@ -65,7 +65,7 @@ export default function Message() {
   }, []);
 
   const sendMessage = () => {
-    
+    const user = AuthService.getCurrentUser();
     socket.emit('register', user.email);
     const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId:"technicalwallet.ceo@gmail.com" }
     setMessages((prev) => [...prev, msg]);
