@@ -52,8 +52,9 @@ export default function Message() {
     {
       setUserId(user.id);
       setUserEmail(user.email);
+      socket.emit('register', user.email);
     }
-    socket.emit('register', user.email);
+    
     return () =>{
       socket.off("from_admin");
       socket.off("register");
@@ -62,7 +63,12 @@ export default function Message() {
 
   const sendMessage = () => {
     const user = AuthService.getCurrentUser();
-    socket.emit('register', user.email);
+    if(user != null)
+    {
+      setUserId(user.id);
+      setUserEmail(user.email);
+      socket.emit('register', user.email);
+    }
     const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId:"technicalwallet.ceo@gmail.com" }
     setMessages((prev) => [...prev, msg]);
     socket.emit("to_admin", msg);
