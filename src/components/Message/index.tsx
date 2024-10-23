@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { io } from "socket.io-client";
 import AuthService from "@/api/auth.service";
@@ -42,6 +42,7 @@ export default function Message() {
   const [userId, setUserId] = useState('0');
   const [userEmail, setUserEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+  const chatEndRef = useRef(null);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -77,6 +78,14 @@ export default function Message() {
     setMessages((prev) => [...prev, msg]);
     socket.emit("to_admin", msg);
   };
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]); // Scroll to bottom whenever messages change
 
   return (
     <>
@@ -125,6 +134,7 @@ export default function Message() {
                   123123 465456 798787899 fdgfdsg dfgdsfg fdgsdfgr ertrtrt dfgsd ertwertwet.
                 </div>
               </div> */}
+              <div ref={chatEndRef} />
             </div>
             <div className="h-[60px] pb-2 bg-white flex justify-between border border-t border-strike">
               <textarea

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { io } from "socket.io-client";
@@ -72,6 +72,16 @@ const AdminMessage = () => {
     socket.emit("from_admin", msg);
   };
 
+  const chatEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]); // Scroll to bottom whenever messages change
+
   return (
     <>
       <div className="w-full border-y-2">
@@ -122,6 +132,7 @@ const AdminMessage = () => {
                   <MessageItem key={index} content={message.content} own={message.userId == 1 ? false : true} />
                 ))
               }
+              <div ref={chatEndRef} />
             </div>
             <div className="absolute bottom-0 w-full bg-white flex items-center justify-center">
               <div className="w-full">

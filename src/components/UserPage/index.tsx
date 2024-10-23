@@ -44,7 +44,7 @@ const UserPage = () => {
             </div>
             <div className="w-full px-10 lg:w-9/12"
               style={{
-                height: `${`${(size.height ?? 600) - 93}px`}`,
+                minHeight: `${`${(size.height ?? 600) - 93}px`}`,
               }}
             >
               <div className={`${pageIndex === 0 ? "block" : "hidden"}`}><Profile /></div>
