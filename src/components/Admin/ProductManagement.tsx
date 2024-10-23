@@ -706,7 +706,7 @@ const ProductManagement = () => {
           <div className="flex md:space-x-2">
             <div className="mb-5 w-1/2 flex flex-wrap items-center justify-between dark:border-white dark:border-opacity-10">
               <h3 className="pb-2 font-bold leading-tight text-dark dark:text-body-color-dark">
-                Param1
+                Size
               </h3>
               <input
                 type="text"
@@ -718,7 +718,7 @@ const ProductManagement = () => {
             </div>
             <div className="mb-5 w-1/2 flex flex-wrap items-center justify-between dark:border-white dark:border-opacity-10">
               <h3 className="pb-2 font-bold leading-tight text-dark dark:text-body-color-dark">
-                Param2
+                Finish
               </h3>
               <input
                 type="text"
@@ -732,7 +732,7 @@ const ProductManagement = () => {
           <div className="flex md:space-x-2">
             <div className="mb-5 w-1/2 flex flex-wrap items-center justify-between dark:border-white dark:border-opacity-10">
               <h3 className="pb-2 font-bold leading-tight text-dark dark:text-body-color-dark">
-                Look
+                Preview
               </h3>
               <input
                 type="number"
