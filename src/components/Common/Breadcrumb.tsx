@@ -22,7 +22,7 @@ const Breadcrumb = ({
                 </p>
               </div>
             </div>
-            <div className="w-full px-4 md:w-4/12 lg:w-5/12">
+            {/* <div className="w-full px-4 md:w-4/12 lg:w-5/12">
               <div className="text-end">
                 <ul className="flex items-center md:justify-end">
                   <li className="flex items-center">
@@ -39,7 +39,7 @@ const Breadcrumb = ({
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

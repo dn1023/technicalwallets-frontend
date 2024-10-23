@@ -56,7 +56,7 @@ const Stamp = () => {
                   My team is highly qualified and experienced in architectural, structural, and MEP design and concepturalization of ideas.
                 </p>
                 <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                  We can design and review any kind of Architecture, Structural or CIVIL and MEP design and give you PE STAMP from licensed engineers USA, Canada, Australia and UK.
+                  We can design and review any kind of Architecture, Structural or Civil and MEP design and give you PE STAMP from licensed engineers USA, Canada, Australia and UK.
                 </p>
                 <h3 className="mb-4 text-2xl font-bold leading-tight text-dark dark:text-body-color-dark">
                   Licensed & Registered Professional Engineer(P.E.) and Architect in team at:
