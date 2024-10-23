@@ -127,6 +127,7 @@ const AdminMessage = () => {
             {
               users.filter(user => user.id != 1).map((user, index) => (
                 <div
+                  key={index}
                   className={`px-3 py-1 h-[80px] hover:bg-black/20 flex items-center ${targetId == user.email && 'bg-black/10 border-r-4 border-indigo-500'}`}
                   onClick={() => setTargetId(user.email)}
                 >
