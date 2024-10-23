@@ -10,7 +10,7 @@ const MessageItem = ({ content, own }) => {
     <>
       {own ?
         <div className="w-full flex flex-nowrap">
-          <div className="rounded-full mr-2">
+          <div className="rounded-full mr-2 w-[40px]">
             <Image
               src="/images/message/administrator.png"
               alt="author"
@@ -19,13 +19,13 @@ const MessageItem = ({ content, own }) => {
               height={40}
             />
           </div>
-          <div className="w-full bg-slate-100 text-base px-2 py-2 text-black rounded-lg mr-3">
-            {content}
+          <div className="mr-4 w-[310px] flex">
+            <div className="bg-slate-100 text-base px-2 py-2 text-black rounded-lg">{content}</div>
           </div>
         </div> :
         <div className="w-full flex flex-nowrap justify-end">
-          <div className="w-full bg-primary text-base px-2 py-2 text-white rounded-lg ml-12">
-            {content}
+          <div className="w-[310px] flex justify-end">
+            <div className="bg-primary text-base px-2 py-2 text-white rounded-lg ml-12">{content}</div>
           </div>
         </div>
       }
@@ -65,6 +65,8 @@ export default function Message() {
   }, []);
 
   const sendMessage = () => {
+    if(message.trim() == '')
+      return;
     const user = AuthService.getCurrentUser();
     if (user != null) {
       setUserId(user.id);
@@ -77,6 +79,7 @@ export default function Message() {
     const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId: "technicalwallet.ceo@gmail.com" }
     setMessages((prev) => [...prev, msg]);
     socket.emit("to_admin", msg);
+    setMessage('');
   };
 
   const scrollToBottom = () => {
@@ -137,12 +140,20 @@ export default function Message() {
               <div ref={chatEndRef} />
             </div>
             <div className="h-[60px] pb-2 bg-white flex justify-between border border-t border-strike">
-              <textarea
+              <input
+                type="text"
                 name="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    sendMessage();
+                  }
+                }}
                 placeholder="Enter your message"
-                className="w-[250px] h-full overflow-auto bg-white px-3 py-3 text-base outline-none text-body-color"
+                className="w-[350px] h-full overflow-auto bg-white px-3 py-4 text-base outline-none text-body-color"
+                multiple
               />
               <div className="h-[60px] grid content-end pb-3 pr-1">
                 <button onClick={sendMessage} className="w-[40px] h-[40px] rounded-full hover:bg-slate-100 text-black bg-white duration-300 flex items-center justify-center">

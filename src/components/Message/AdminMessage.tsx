@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { io } from "socket.io-client";
 import AuthService from "@/api/auth.service";
+import UserService from "@/api/user.service";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { Empty, Modal } from 'antd';
 
 const socket = io(`${process.env.NEXT_PUBLIC_BACKEND_API}`);
 
@@ -12,24 +14,24 @@ const MessageItem = ({ content, own }) => {
   return (
     <>
       {own ?
-        <div className="p-2 max-w-[600px] flex flex-nowrap">
-          <div className="p-2 rounded-md border border-2 bg-white border-dark mr-2">
+        <div className="p-2 flex items-start flex-nowrap">
+          <div className="p-2 rounded-md border border-2 bg-white border-dark mr-3">
             <Image
               src="/images/message/account.png"
               alt="author"
               className="rounded-md"
-              width={50}
-              height={50}
+              width={30}
+              height={30}
             />
           </div>
-          <div className="w-full bg-slate-100 text-base px-2 py-2 text-black rounded-lg mr-3">
-            {content}
+          <div className="flex">
+            <div className="max-w-[650px] bg-slate-100 text-base px-5 py-3 text-black rounded-lg">{content}</div>
           </div>
         </div>
         :
-        <div className="w-full">
-          <div className="w-full flex justify-end py-2 px-2">
-            <div className="max-w-[600px] bg-primary text-base px-2 py-2 text-white rounded-lg">
+        <div className="w-full -ml-3">
+          <div className="flex justify-end py-2 px-2">
+            <div className="max-w-[700px] bg-primary text-base px-5 py-3 text-white rounded-lg">
               {content}
             </div>
           </div>
@@ -46,7 +48,10 @@ const AdminMessage = () => {
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [targetId, setTargetId] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     socket.on("to_admin", (msg) => {
@@ -60,16 +65,34 @@ const AdminMessage = () => {
     }
     socket.emit('register', user.email);
 
-    return () =>{
+    return () => {
       socket.off("to_admin");
       socket.off("register");
     };
   }, []);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const allUsers = await UserService.getAll();
+      if (allUsers !== undefined) {
+        if (allUsers?.length > 0) {
+          setUsers(allUsers);
+          setLoading(allUsers?.length > 1);
+          // Navigate on success
+          // Example: router.push('/'); // Assuming you have a router instance available
+        }
+      }
+    };
+    fetchUsers().catch(error => console.error('Failed to fetch users:', error));
+  }, []);
+
   const sendMessage = () => {
-    const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId: "123" }
+    if (message.trim() == '' || targetId == '')
+      return;
+    const msg = { content: message, type: "text", userId: userId, userEmail: userEmail, targetId: targetId }
     setMessages((prev) => [...prev, msg]);
     socket.emit("from_admin", msg);
+    setMessage('');
   };
 
   const chatEndRef = useRef(null);
@@ -84,7 +107,7 @@ const AdminMessage = () => {
 
   return (
     <>
-      <div className="w-full border-y-2">
+      <div className="w-full border-t-2">
         {/* <div className="relative h-[50px] bg-black text-base flex items-center justify-center text-white">
           How can I help you today?
           <Link
@@ -101,46 +124,71 @@ const AdminMessage = () => {
               height: `${`${(size.height ?? 600) - 98}px`}`,
             }}
           >
-            <div className="p-4 h-[100px] hover:bg-black/20 flex items-center">
-              <div className="p-2 rounded-md border border-2 border-dark mr-2">
-                <Image
-                  src="/images/message/account.png"
-                  alt="author"
-                  className="rounded-md"
-                  width={50}
-                  height={50}
-                />
-              </div>
-              <div className="w-full p-4 m1-2">
-                <p className="mb-1 text-base font-medium text-body-color">
-                  user1@gmail.com
-                </p>
-                <p className="mb-1 text-base font-medium text-body-color">
-                  User Name
-                </p>
-              </div>
-            </div>
+            {
+              users.filter(user => user.id != 1).map((user, index) => (
+                <div
+                  className={`px-3 py-1 h-[80px] hover:bg-black/20 flex items-center ${targetId == user.email && 'bg-black/10 border-r-4 border-indigo-500'}`}
+                  onClick={() => setTargetId(user.email)}
+                >
+                  <div className="p-2 rounded-md border border-2 border-dark mr-2">
+                    <Image
+                      src="/images/message/account.png"
+                      alt="author"
+                      className="rounded-md"
+                      width={33}
+                      height={33}
+                    />
+                  </div>
+                  <div className="w-full p-4 m1-2">
+                    <p className="mb-1 text-base font-medium text-body-color">
+                      {user.username}
+                    </p>
+                    <p className="mb-1 text-base font-medium text-body-color">
+                      {user.email}&nbsp;&nbsp;&nbsp;&nbsp;{user.phone}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
+            {
+              !loading && 
+                <div className="w-full min-h-[300px] flex items-center justify-center"><Empty description="No Data"/></div>
+            }
           </div>
-          <div className="relative w-full md:w-8/12 bg-lime-200 overflow-y-auto">
+          <div className="relative w-full md:w-8/12 border-l-2 overflow-y-auto">
             <div className="w-full overflow-y-auto"
               style={{
                 height: `${`${(size.height ?? 600) - 158}px`}`,
               }}
             >
               {
-                messages.map((message, index) => (
+                messages.filter(message => ( (message.userEmail == targetId && message.targetId == userEmail) || (message.userEmail == userEmail && message.targetId == targetId))).map((message, index) => (
                   <MessageItem key={index} content={message.content} own={message.userId == 1 ? false : true} />
                 ))
               }
+              {
+                !targetId && 
+                  <div className="min-h-[300px] w-full flex items-center justify-center">
+                    <Empty 
+                      description="No Message. Please Select A User."
+                    />
+                  </div>
+              }
               <div ref={chatEndRef} />
             </div>
-            <div className="absolute bottom-0 w-full bg-white flex items-center justify-center">
-              <div className="w-full">
+            <div className="absolute bottom-0 w-full bg-white border-t-2 flex items-center justify-center">
+              <div className="w-full pl-2">
                 <input
                   type="text"
                   name="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      sendMessage();
+                    }
+                  }}
                   placeholder="Enter your message"
                   className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                 />

@@ -153,7 +153,7 @@ const Admin = () => {
             <div 
               className="w-full px-10 pt-[50px] lg:w-9/12"
               style={{
-                height: `${`${(size.height ?? 850) - 90}px`}`,
+                minHeight: `${`${(size.height ?? 850) - 90}px`}`,
               }}
             >
               <div className={`${pageIndex === 0 ? "block" : "hidden"}`}><Profile /></div>
