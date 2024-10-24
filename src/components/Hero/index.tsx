@@ -103,7 +103,7 @@ const Hero = () => {
         <div className="absolute inset-0 items-center flex justify-center bg-black/50">
           {/* <h2 className="text-white text-2xl font-bold">"Our 3D Animation"</h2> */}
           {/* <Image src="/images/favicon_large.png" alt="Picture of the hero" className="" width={500} height={500} /> */}
-          <div className="max-w-[500px]">
+          <div className="max-w-[800px]">
             <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
               OUR COLLABORATIONS
             </div>
