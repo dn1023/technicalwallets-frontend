@@ -107,12 +107,12 @@ const Hero = () => {
             <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-5">
               OUR COLLABORATIONS
             </div>
-            {/* <div className="w-full text-center px-5 py-10 font-bold leading-tight backdrop-blur-sm text-black dark:text-white md:text-amber-500 sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
+            <div className="w-full text-center px-5 py-10 font-bold leading-tight backdrop-blur-sm text-black dark:text-white md:text-amber-500 sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
               Techincal Wallet is not only an Architectural and Interior Design Studio, but also a 3D Visualization  and Virtual Reality Studio co-producing 3D imagery and animations with reputable architects, real estate developers, and product-marketing agencies.
             </div>
             <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
               Welcome to Our Service!
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
