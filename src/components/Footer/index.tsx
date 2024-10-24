@@ -63,8 +63,8 @@ const Footer = () => {
   return (
     <>
       {location == "/message" || location == "/profile" || location == "/admin" ? (<></>) : (
-        <footer className="relative z-10 bg-white dark:bg-gray-dark bg-[url('/images/footer/01.jpg')] bg-cover bg-center bg-no-repeat">
-          <div className="backdrop-blur-lg bg-white/60 dark:bg-gray-dark pt-16 md:pt-20 lg:pt-24">
+        <footer className="relative z-10 dark:bg-gray-dark bg-[url('/images/background/1.jpg')] bg-cover bg-middle-center bg-no-repeat">
+          <div className="backdrop-blur-lg dark:bg-gray-dark pt-16 md:pt-20 lg:pt-24">
             <div className="container">
               <div className="-mx-4 flex flex-wrap">
                 <div className="w-full px-4 md:w-1/2 flex items-center justify-center md:justify-left">

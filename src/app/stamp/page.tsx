@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const StampPage = () => {
   return (
     <>
-      <div className="min-h-[300px] bg-[url('/images/background/drafting-tools-near-plans-helmet_23-2147785527.jpg')] bg-cover bg-left-top bg-no-repeat">
+      <div className="min-h-[300px] bg-[url('/images/background/16.png')] bg-cover bg-left-center bg-no-repeat">
         <Breadcrumb
           pageName="Get Stamp"
           description="We provide official stamps on drawings, affirming their adherence to professional and regulatory standards."

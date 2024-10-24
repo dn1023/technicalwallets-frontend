@@ -81,7 +81,7 @@ const Hero = () => {
             </div>
             <div className="w-full text-center px-5 py-10 font-bold leading-tight backdrop-blur-sm text-black dark:text-white md:text-amber-500 sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
               LET&apos;S BUILD YOUR DREAM<br />
-              OF HAVING A HOME
+              OF ARCHITECTURES
             </div>
             <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
               Welcome to Our Service!

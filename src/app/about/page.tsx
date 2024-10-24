@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <>
-      <div className="min-h-[300px] bg-[url('/images/background/helmet-drafting-tools_23-2147785530.jpg')] bg-cover bg-left-top bg-no-repeat">
+      <div className="min-h-[300px] bg-[url('/images/background/13.png')] bg-cover bg-left-center bg-no-repeat">
         <Breadcrumb
           pageName="About"
           description="Technical Wallet provides a variety of design services that cater to different styles and needs, ensuring visually appealing and functional solutions for both residential and commercial spaces."

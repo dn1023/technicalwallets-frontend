@@ -320,64 +320,103 @@ const Header = () => {
                         About
                       </Link>
                     </li>
-                    {/* {menuData.map((menuItem, index) => (
-                      <li key={index} className="group relative">
-                        <button
-                          onClick={() => onChangeStatue(menuItem.index)}
-                          className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                        >
-                          {menuItem.title}&nbsp;&nbsp;
-                          {
-                            status[menuItem.index] ? 
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                          }
-                        </button>
-                        <div className={`${status[menuItem.index] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
-                          {menuItem.submenu.map((menuSubItem, index) => (
-                            <button
-                              onClick={() => setCatalog([!catalog[0], false, false, false, false, false])}
-                              className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                            >
-                              <p>{menuSubItem.title}</p>&nbsp;&nbsp;
-                              {
-                              catalog[0] ? 
-                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                              }
-                              {
-                                catalog[0] &&
-                                <>
-                                  {menuSubItem.submenu.map((menuSubSubItem, index) => (
-                                    <Link
-                                      key={index}
-                                      href="/#offers"
-                                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                                    >
-                                      {menuSubSubItem.title}
-                                    </Link>
-                                  ))}
-                                </>
-                              }
-                            </button>
-                          ))}
-                          
-                        </div>
-                      </li>
-                    ))} */}
                     <li className="group relative">
                       <button
                         onClick={() => setStatus([!status[0], false, false])}
                         className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
+                        Designed To Build&nbsp;&nbsp;
+                        {
+                        status[0] ? 
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        }
+                      </button>
+                      {
+                      status[0] &&
+                      <div className={`${status[0] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col max-h-[500px] overflow-auto`}>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Tiny_Houses"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Tiny Houses
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Portable_Houses"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Portable Houses
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=RV==Camper"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          RV/Camper
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Tent"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Tent
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Tiny_Restaurant==Cafe"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Tiny Restaurant/Cafe
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Portable_Truck_Food==Cafe"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Portable Truck Food/Cafe
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Portable_Ice_Cream"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Portable Ice Cream
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Kiosks==Exhibition"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Kiosks/Exhibition
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Furniture"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Furniture&lsquo;s
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Lights"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Lights
+                        </Link>
+                        <Link
+                          href="/products/Design_Catalog=Industrial_Design=Art==Decoration"
+                          className="text-nowrap bg-white flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                        >
+                          Art/Decoration
+                        </Link>
+                      </div>
+                      }
+                    </li>
+                    <li className="group relative">
+                      <button
+                        onClick={() => setStatus([false, !status[1], false])}
+                        className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                      >
                         Design Catalog&nbsp;&nbsp;
                         {
-                          status[0] ? 
+                          status[1] ? 
                           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
                           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                         }
                         </button>
-                        <div className={`${status[0] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col max-h-[500px] overflow-auto`}>
+                        <div className={`${status[1] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col max-h-[500px] overflow-auto`}>
                           <button
                             onClick={() => setCatalog([!catalog[0], false, false, false, false, false])}
                             className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
@@ -587,189 +626,15 @@ const Header = () => {
                               </Link>
                             </>
                           }
-                          <button
-                            onClick={() => setCatalog([false, false, false, false, !catalog[4], false])}
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            Products Design&nbsp;&nbsp;
-                            {
-                            catalog[4] ? 
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                            }
-                          </button>
-                          {
-                            catalog[4] &&
-                            <>
-                              <Link
-                                href="/products/Design_Catalog=Products_Design=Assemblies_Toy"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                Assemblies Toy&apos;s
-                              </Link>
-                            </>
-                          }
-                          <button
-                            onClick={() => setCatalog([false, false, false, false, false, !catalog[5]])}
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            Prototype Design&nbsp;&nbsp;
-                            {
-                            catalog[5] ? 
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                            }
-                          </button>
-                          {
-                            catalog[5] &&
-                            <>
-                              <Link
-                                href="/products/Design_Catalog=Prototype_Design=Equipment"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                Equipment&apos;s
-                              </Link>
-                            </>
-                          }
                         </div>
                     </li>
                     <li className="group relative">
-                      <button
-                        onClick={() => setStatus([false, !status[1], false])}
+                      <Link
+                        href="/other/hireus"
                         className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                       >
-                        Design Convert&nbsp;&nbsp;
-                        {
-                          status[1] ? 
-                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                        }
-                        </button>
-                        <div className={`${status[1] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
-                          <button
-                            onClick={() => setConvert([!convert[0], false, false])}
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            <p>Conceptual Design</p>&nbsp;&nbsp;
-                            {
-                            convert[0] ? 
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                            }
-                          </button>
-                          {
-                            convert[0] &&
-                            <>
-                              <Link
-                                href="/other/Design_Convert=Conceptual_Design=Blueprints"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                Blueprints
-                              </Link>
-                              <Link
-                                href="/other/Design_Convert=Conceptual_Design=3D_Animation"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                3D Animation
-                              </Link>
-                            </>
-                          }
-                          <button
-                            onClick={() => setConvert([false, !convert[1],  false])}
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            <p>Blueprints</p>&nbsp;&nbsp;
-                            {
-                            convert[1] ? 
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                            }
-                          </button>
-                          {
-                            convert[1] &&
-                            <>
-                              <Link
-                                href="/other/Design_Convert=Blueprints=3D_Visualization"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                3D Visualization
-                              </Link>
-                              <Link
-                                href="/other/Design_Convert=Blueprints=3D_Animation"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                3D Animation
-                              </Link>
-                            </>
-                          }
-                          <button
-                            onClick={() => setConvert([false, false, !convert[2]])}
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            <p>Hand Sketch</p>&nbsp;&nbsp;
-                            {
-                            convert[2] ? 
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                            }
-                          </button>
-                          {
-                            convert[2] &&
-                            <>
-                              <Link
-                                href="/other/Design_Convert=Hand_Sketch=Conceptual_Design"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                Conceptual Design
-                              </Link>
-                              <Link
-                                href="/other/Design_Convert=Hand_Sketch=Blueprints"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                Blueprints
-                              </Link>
-                              <Link
-                                href="/other/Design_Convert=Hand_Sketch=3D_Animation"
-                                className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                              >
-                                3D Animation
-                              </Link>
-                            </>
-                          }
-                        </div>
-                    </li>
-                    <li className="group relative">
-                      <button
-                        onClick={() => setStatus([false, false, !status[2]])}
-                        className="text-nowrap flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                      >
-                        Drawing Prepare&nbsp;&nbsp;
-                        {
-                          status[2] ? 
-                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                        }
-                        </button>
-                        <div className={`${status[2] ? "block" : "hidden" } absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col`}>
-                          <Link
-                            href="/other/Drawing_Prepare=Shop_Drawing="
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            <p>Shop Drawing</p>&nbsp;&nbsp;
-                          </Link>
-                          <Link
-                            href="/other/Drawing_Prepare=Constructions_Drawing="
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            <p>Constructions Drawing</p>&nbsp;&nbsp;
-                          </Link>
-                          <Link
-                            href="/other/Drawing_Prepare=Fabrication_Drawing="
-                            className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          >
-                            <p>Fabrication Drawing</p>&nbsp;&nbsp;
-                          </Link>
-                        </div>
+                        Hire Us&nbsp;&nbsp;
+                      </Link>
                     </li>
                     <li className="group relative">
                       <Link
