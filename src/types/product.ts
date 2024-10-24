@@ -7,4 +7,5 @@ export type Product = {
   content: string;
   oldprice?: string;
   newprice?: string;
+  look?:string;
 };
