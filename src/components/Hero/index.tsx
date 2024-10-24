@@ -89,6 +89,33 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <div className="relative aspect-video w-full hidden md:block">
+        <video
+          className="w-full object-cover"
+          src="/images/video/back1.mp4"
+          autoPlay
+          loop
+          muted
+        >
+          <source src="/images/video/back1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 items-center flex justify-center bg-black/50">
+          {/* <h2 className="text-white text-2xl font-bold">"Our 3D Animation"</h2> */}
+          {/* <Image src="/images/favicon_large.png" alt="Picture of the hero" className="" width={500} height={500} /> */}
+          <div className="max-w-[500px]">
+            <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
+              OUR COLLABORATIONS
+            </div>
+            <div className="uppercase w-full text-center px-5 py-10 font-bold leading-tight backdrop-blur-sm text-black dark:text-white md:text-amber-500 sm:leading-tight md:leading-tight">
+              Techincal Wallet is not only an Architectural and Interior Design Studio, but also a 3D Visualization  and Virtual Reality Studio co-producing 3D imagery and animations with reputable architects, real estate developers, and product-marketing agencies.
+            </div>
+            <div className="w-full text-center text-black uppercase font-bold text-[28px] backdrop-blur-sm bg-white/70 p-3">
+              Welcome to Our Service!
+            </div>
+          </div>
+        </div>
+      </div>
       {/* relative z-10 overflow-hidden bg-[url('/images/choice/slider-2.jpg')] bg-center bg-no-repeat */}
       {/* <div className="container">
           <div className="-mx-4 flex flex-wrap items-center justify-center">
