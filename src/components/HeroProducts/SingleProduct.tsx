@@ -43,7 +43,7 @@ const SingleProduct = ({ product }: { product: Product }) => {
           </>
         }
 
-        <div className="absolute inset-0 w-full min-h-[800px] flex items-center justify-center  transition duration-200 hover:bg-black/30">
+        <div className="absolute inset-0 w-full min-h-[800px] flex items-center justify-center  transition duration-500 hover:bg-black/30">
           <Link
             href={"/productdetail/" + id}
             className="w-full h-full"
