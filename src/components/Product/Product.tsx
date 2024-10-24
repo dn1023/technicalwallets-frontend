@@ -121,8 +121,8 @@ const Product = (props: Props) => {
                   <div className="flex flex-wrap items-center">
                     <div className="mb-5 flex items-center">
                       <div className="flex text-base font-medium text-body-color">
-                        <p className="line-through">${product.oldprice}USD</p>
-                        &nbsp;&nbsp;&nbsp;<p>${product.newprice}USD</p>
+                        <p className="line-through">{Number(product.oldprice) > 0 && `${product.oldprice}USD`}</p>
+                        &nbsp;&nbsp;&nbsp;<p>{Number(product.newprice) > 0 && `${product.newprice}USD`}</p>
                       </div>
                     </div>
                   </div>
@@ -139,10 +139,10 @@ const Product = (props: Props) => {
                     {product.content}
                   </pre>
                   <p className="text-base font-medium leading-relaxed text-body-color sm:leading-relaxed lg:leading-relaxed xl:leading-relaxed">
-                    {product.param1}
+                    Size:&nbsp;{product.param1}
                   </p>
                   <p className="mb-10 text-base font-medium leading-relaxed text-body-color sm:leading-relaxed lg:leading-relaxed xl:leading-relaxed">
-                    {product.param2}
+                    Finish:&nbsp;{product.param2}
                   </p>
                 </div>
                 <div className="flex flex-wrap justify-end">

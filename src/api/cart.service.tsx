@@ -2,16 +2,16 @@
 //import fetch from 'node-fetch';
 import authHeader from "./auth-header";
 
-interface OrderResponse {
+interface CartResponse {
   message?: string;
 }
 
-interface GetOrderAllResponse {
+interface GetCartAllResponse {
   message?: string;
   data?: Array<any>;
 }
 
-interface GetOrderResponse {
+interface GetCartResponse {
   message?: string;
   data?: Array<any>;
 }
@@ -42,7 +42,7 @@ class CartService {
     message: req.body.message,*/
 
   async register(userid: string, productid: string, category: string, subcategory: string, subsubcategory: string,
-    name: string, email: string, phone: string, message: string): Promise<OrderResponse> {
+    name: string, email: string, phone: string, message: string): Promise<CartResponse> {
     return fetch(`${API_URL}register`, {
       method: 'POST',
       headers: {
@@ -58,7 +58,7 @@ class CartService {
     }).catch(error => console.error('Error registering:', error));
   }
 
-  async update( name: string, email: string, phone: string, message: string): Promise<OrderResponse> {
+  async update( name: string, email: string, phone: string, message: string): Promise<CartResponse> {
     return fetch(`${API_URL}update`, {
       method: 'POST',
       headers: {
@@ -140,7 +140,7 @@ class CartService {
       });
   }
 
-  async delete(id: string): Promise<[]> {
+  async delete(id: string): Promise<CartResponse> {
     return fetch(`${API_URL}delete`, {
       method: 'POST',
       headers: {

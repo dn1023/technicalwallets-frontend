@@ -43,7 +43,7 @@ const ProductManagement = () => {
 
   const onReload = async () => {
     //toast.success("Saved successfully!")
-    if(catalog2 == '' ||  catalog3 == ''){
+    if (catalog2 == '' || catalog3 == '') {
       setSelect('Please select the catalog');
       return;
     }
@@ -64,7 +64,7 @@ const ProductManagement = () => {
     }
   }
 
-  const onDelete = async (id:number) => {
+  const onDelete = async (id: number) => {
     const res = await ProductService.delete(id);
     if (res !== undefined) {
       if (res?.message == "Product deleted successfully!") {
@@ -78,25 +78,23 @@ const ProductManagement = () => {
 
   const onSave = async () => {
     //toast.success("Saved successfully!")
-    if(!isUpdate)
-    {
+    if (!isUpdate) {
       if (select.trim() == ''
-          || title.trim() == ''
-          || coverimage == null) {
-          toast.warning("Please check product information.");
-          return;
+        || title.trim() == ''
+        || coverimage == null) {
+        toast.warning("Please check product information.");
+        return;
       }
     }
-    else
-    {
+    else {
       if (title.trim() == '') {
-          toast.warning("Please check product title.");
-          return;
+        toast.warning("Please check product title.");
+        return;
       }
     }
-    
+
     //setLoading(false);
-    try{
+    try {
 
       const formData = new FormData();
       formData.append('coverimage', coverimage);
@@ -112,7 +110,7 @@ const ProductManagement = () => {
       formData.append('look', look.toString());
       formData.append('handshake', handshake.toString());
 
-      if( !isUpdate ) {
+      if (!isUpdate) {
         const res = await ProductService.register(formData);
         if (res !== undefined) {
           if (res?.message == "Product registered successfully!") {
@@ -136,10 +134,9 @@ const ProductManagement = () => {
           else {
             toast.warn(res?.message);
           }
-        } 
+        }
       }
-      else
-      {
+      else {
         const res = await ProductService.update(
           id,
           title,
@@ -173,7 +170,7 @@ const ProductManagement = () => {
           else {
             toast.warn(res?.message);
           }
-        } 
+        }
       }
     } catch (error) {
       const resMessage =
@@ -194,7 +191,7 @@ const ProductManagement = () => {
   const [select, setSelect] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false); // flase -> Add product, true -> Update product
-  const [id,setId] = useState('');
+  const [id, setId] = useState('');
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -208,9 +205,9 @@ const ProductManagement = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [status]);
-  
+
   useEffect(() => {
-    if(catalog2 == '' ||  catalog3 == ''){
+    if (catalog2 == '' || catalog3 == '') {
       setSelect('Please select the catalog');
       return;
     }
@@ -219,19 +216,18 @@ const ProductManagement = () => {
     onReload();
   }, [catalog2, catalog3]);
 
-  const onOpenAddProduct=()=>{
-    if(select == 'Please select the catalog')
+  const onOpenAddProduct = () => {
+    if (select == 'Please select the catalog')
       toast.warning("Please select the catalog.");
-    else
-    {
+    else {
       setTitle('Technical Wallet');
       setContent('Our architectural design products and services offer a comprehensive approach to transforming your vision into reality. We specialize in creating cutting-edge architectural solutions that blend functionality with aesthetic appeal.');
       setCoverImage(null);
       /* fileInputRef.current.value = ''; */
       setOldPrice('0');
       setNewPrice('0');
-      setParam1('Size: Adjustable');
-      setParam2('Finish: As per Client request');
+      setParam1('Adjustable');
+      setParam2('As per Client request');
       setLook(0);
       setHandShake(0);
       setIsUpdate(false);
@@ -239,7 +235,7 @@ const ProductManagement = () => {
     }
   }
 
-  const onUpdate = async (id:string) => {
+  const onUpdate = async (id: string) => {
     setIsUpdate(true);
     setId(id);
     const res = await ProductService.getById(id);
@@ -286,117 +282,145 @@ const ProductManagement = () => {
             >
               {select}&nbsp;&nbsp;
               {
-                status ? 
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                status ?
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" /></svg> :
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
               }
-              </button>
-              <div className={`${status ? "block" : "hidden" } absolute top-[40px] bg-white shadow-lg backdrop-blur-sm z-[5] flex flex-col max-h-[500px] overflow-auto`}>
-                <button
-                  onClick={() => setCatalog([!catalog[0], false, false, false, false, false])}
-                  className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                >
-                  <p>Architecture Design</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {
-                  catalog[0] ? 
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                  }
-                </button>
+            </button>
+            <div className={`${status ? "block" : "hidden"} absolute bg-white shadow-lg backdrop-blur-sm z-[888] flex flex-col max-h-[500px] overflow-auto`}>
+              <button
+                onClick={() => setCatalog([!catalog[0], false, false, false, false, false])}
+                className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+              >
+                <p>Architecture Design</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {
-                  catalog[0] &&
-                  <>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('House');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      House
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Villa');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Villa
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Palace');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Palace
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Comm./Resid. Towers');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Comm./Resid. Towers
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Residential Buildings');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Residential Buildings
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Commercial Buildings');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Commercial Buildings
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Hotels');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Hotels
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('GYM&SPA');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      GYM & SPA
-                    </button>
-                  </>
+                  catalog[0] ?
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" /></svg> :
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
                 }
-                <button
-                  onClick={() => setCatalog([false, !catalog[1], false, false, false, false])}
-                  className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                >
-                  Landscape Design&nbsp;&nbsp;
-                  {
-                  catalog[1] ? 
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                  }
-                </button>
+              </button>
+              {
+                catalog[0] &&
+                <>
+                  <button
+                    onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('High Rise');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    High Rise
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Building');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Building
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Villa ~ House');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Villa ~ House
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Architecture Design'); setCatalog3('Royal ~ Palace');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Royal ~ Palace
+                  </button>
+                </>
+              }
+              <button
+                onClick={() => setCatalog([false, !catalog[1], false, false, false, false])}
+                className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+              >
+                Interior Design&nbsp;&nbsp;
                 {
+                  catalog[1] ?
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" /></svg> :
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                }
+              </button>
+              {
                 catalog[1] &&
                 <>
                   <button
-                    onClick={()=>{setCatalog2('Landscape Design'); setCatalog3('Parks');}}
+                    onClick={()=>{setCatalog2('Interior Design'); setCatalog3('Minimalist');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Minimalist
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Interior Design'); setCatalog3('Modern');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Modern
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Interior Design'); setCatalog3('Classical');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Classical
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Interior Design'); setCatalog3('Modern Classic');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Modern Classic
+                  </button>
+                </>
+              }
+              <button
+                onClick={() => setCatalog([false, false, !catalog[2], false, false, false])}
+                className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+              >
+                Landscape&nbsp;&nbsp;
+                {
+                  catalog[2] ?
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" /></svg> :
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                }
+              </button>
+              {
+                catalog[2] &&
+                <>
+                  <button
+                    onClick={()=>{setCatalog2('Landscape'); setCatalog3('Streetscape');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Streetscape
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Landscape'); setCatalog3('Parks');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
                     Parks
                   </button>
                   <button
-                    onClick={()=>{setCatalog2('Landscape Design'); setCatalog3('Streetscape');}}
+                    onClick={()=>{setCatalog2('Landscape'); setCatalog3('Golf Course');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
-                    Streetscape
+                    Golf Course
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Landscape'); setCatalog3('Garden');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Garden
                   </button>
                 </>
-                }
-                <button
-                  onClick={() => setCatalog([false, false, !catalog[2], false, false, false])}
-                  className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                >
-                  Industrial Design&nbsp;&nbsp;
-                  {
-                  catalog[2] ? 
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                  }
-                </button>
+              }
+              <button
+                onClick={() => setCatalog([false, false, false, !catalog[3], false, false])}
+                className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+              >
+                Industrial Design&nbsp;&nbsp;
                 {
-                catalog[2] &&
+                  catalog[3] ?
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" /></svg> :
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                }
+              </button>
+              {
+                catalog[3] &&
                 <>
                   <button
                     onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Tiny Houses');}}
@@ -411,10 +435,34 @@ const ProductManagement = () => {
                     Portable Houses
                   </button>
                   <button
-                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('RV/Camper');}}
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('RV ~ Camper');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
-                    RV/Camper
+                    RV ~ Camper
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Shipping Container Homes');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Shipping Container Homes
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Tiny Restaurant ~ Cafe');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Tiny Restaurant ~ Cafe
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Kiosks');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Kiosks
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Wayfinding ~ Exhibition');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Wayfinding ~ Exhibition
                   </button>
                   <button
                     onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Tent');}}
@@ -423,34 +471,22 @@ const ProductManagement = () => {
                     Tent
                   </button>
                   <button
-                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Tiny Restaurant/Cafe');}}
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Portable Truck Food ~ Cafe');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
-                    Tiny Restaurant/Cafe
+                    Portable Truck Food ~ Cafe
                   </button>
                   <button
-                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Portable Truck Food/Cafe');}}
+                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Hut');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
-                    Portable Truck Food/Cafe
-                  </button>
-                  <button
-                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Portable Ice Cream');}}
-                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                  >
-                    Portable Ice Cream
-                  </button>
-                  <button
-                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Kiosks/Exhibition');}}
-                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                  >
-                    Kiosks/Exhibition
+                    Hut
                   </button>
                   <button
                     onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Furniture');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
-                    Furniture&lsquo;s
+                    Furniture
                   </button>
                   <button
                     onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Lights');}}
@@ -458,94 +494,50 @@ const ProductManagement = () => {
                   >
                     Lights
                   </button>
+                </>
+              }
+
+              <button
+                onClick={() => setCatalog([false, false, false, false, !catalog[4], false])}
+                className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+              >
+                Marine Design&nbsp;&nbsp;
+                {
+                  catalog[4] ?
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" /></svg> :
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                }
+              </button>
+              {
+                catalog[4] &&
+                <>
                   <button
-                    onClick={()=>{setCatalog2('Industrial Design'); setCatalog3('Art/Decoration');}}
+                    onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Floating Houses');}}
                     className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                   >
-                    Art/Decoration
+                    Floating Houses
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Floating Restaurant ~ Cafe');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Floating Restaurant ~ Cafe
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Luxury ~ Boat');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Luxury ~ Boat
+                  </button>
+                  <button
+                    onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Luxury ~ Yachts');}}
+                    className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                  >
+                    Luxury ~ Yachts
                   </button>
                 </>
-                }
-                
-                <button
-                  onClick={() => setCatalog([false, false, false, !catalog[3], false, false])}
-                  className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                >
-                  Marine Design&nbsp;&nbsp;
-                  {
-                  catalog[3] ? 
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                  }
-                </button>
-                {
-                  catalog[3] &&
-                  <>
-                    <button
-                      onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Floating Houses');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Floating Houses
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Floating Restaurant/Cafe');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Floating Restaurant/Cafe
-                    </button>
-                    <button
-                      onClick={()=>{setCatalog2('Marine Design'); setCatalog3('Yacht/Boat');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Yacht/Boat
-                    </button>
-                  </>
-                }
-                <button
-                  onClick={() => setCatalog([false, false, false, false, !catalog[4], false])}
-                  className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                >
-                  Products Design&nbsp;&nbsp;
-                  {
-                  catalog[4] ? 
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                  }
-                </button>
-                {
-                  catalog[4] &&
-                  <>
-                    <button
-                      onClick={()=>{setCatalog2('Products Design'); setCatalog3('Assemblies Toy');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Assemblies Toy&apos;s
-                    </button>
-                  </>
-                }
-                <button
-                  onClick={() => setCatalog([false, false, false, false, false, !catalog[5]])}
-                  className="flex justify-between text-base text-nowrap lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                >
-                  Prototype Design&nbsp;&nbsp;
-                  {
-                  catalog[5] ? 
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>:
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                  }
-                </button>
-                {
-                  catalog[5] &&
-                  <>
-                    <button
-                      onClick={()=>{setCatalog2('Prototype Design'); setCatalog3('Equipment');}}
-                      className="text-nowrap bg-slate-200 flex text-base lg:mr-0 lg:inline-flex lg:px-4 lg:py-4 text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                    >
-                      Equipment&apos;s
-                    </button>
-                  </>
-                }
-              </div>
+              }
+            </div>
           </div>
           <button
             onClick={onOpenAddProduct}
@@ -582,7 +574,7 @@ const ProductManagement = () => {
                         </div>
                       </td>
                       <td className="border border-slate-300 p-2 text-nowrap">{item.title}</td>
-                     
+
                       <td className="border border-slate-300 p-2"><div className="text-wrap">{item.content}</div></td>
                       <td className="border border-slate-300 p-2">{item.newprice}</td>
                       <td className="border border-slate-300 p-2">{item.oldprice}</td>
@@ -624,12 +616,12 @@ const ProductManagement = () => {
         title={
           <>
             <h3 className="mb-11 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
-            {isUpdate ? "Update Product" : "Add Product"}
+              {isUpdate ? "Update Product" : "Add Product"}
             </h3>
           </>
-        } 
-        open={isModalOpen} 
-        onCancel={()=>{
+        }
+        open={isModalOpen}
+        onCancel={() => {
           setIsModalOpen(false);
         }}
         footer={
@@ -642,9 +634,9 @@ const ProductManagement = () => {
                 &nbsp;&nbsp;{isUpdate ? "Update" : "Save"}&nbsp;&nbsp;
               </button>
               <button
-                onClick={()=>setIsModalOpen(false)}
+                onClick={() => setIsModalOpen(false)}
                 className="rounded-lg bg-amber-500 px-7 py-3 text-base flex items-center justify-center font-semibold text-white duration-300 ease-in-out hover:bg-amber-500/60"
-              > 
+              >
                 &nbsp;Cancel&nbsp;
               </button>
             </div>
@@ -763,7 +755,7 @@ const ProductManagement = () => {
               type="file"
               ref={fileInputRef}
               onChange={(e) => {
-                setCoverImage(e.target.files[0]); 
+                setCoverImage(e.target.files[0]);
                 isUpdate && onImageUpdate();
               }}
               placeholder="Enter image"

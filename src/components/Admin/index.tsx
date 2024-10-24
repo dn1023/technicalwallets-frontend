@@ -15,7 +15,7 @@ import SubscribeManagement from "@/components/Admin/SubscribeManagement"
 import MessageManagement from "@/components/Admin/MessageManagement"
 import ScheduleManagement from "@/components/Admin/Setting"
 import PaymentManagement from "@/components/Admin/PaymentManagement"
-import TimeSlotManagement from "@/components/Admin/TimeSlotManagement"
+import OrderManagement from "@/components/Admin/OrderManagement"
 import ProductManagement from "@/components/Admin/ProductManagement"
 /* export const metadata: Metadata = {
   title: "Laundry and Dry Cleaning in LonDon",
@@ -96,7 +96,7 @@ const Admin = () => {
                       onClick={() => setPageIndex(6)}
                       className="text-nowrap flex text-base lg:mr-0 lg:inline-flex lg:px-0"
                     >
-                      &nbsp;&nbsp;TimeSlots Management
+                      &nbsp;&nbsp;Order Management
                     </button>
                   </li>
                   <li className="flex items-center justify-left hover:text-white">
@@ -162,7 +162,7 @@ const Admin = () => {
               <div className={`${pageIndex === 3 ? "block" : "hidden"}`}><MessageManagement /></div>
               <div className={`${pageIndex === 4 ? "block" : "hidden"}`}><ScheduleManagement /></div>
               <div className={`${pageIndex === 5 ? "block" : "hidden"}`}><PaymentManagement /></div>
-              <div className={`${pageIndex === 6 ? "block" : "hidden"}`}><TimeSlotManagement /></div>
+              <div className={`${pageIndex === 6 ? "block" : "hidden"}`}><OrderManagement /></div>
               <div className={`${pageIndex === 7 ? "block" : "hidden"}`}><ProductManagement /></div>
               {/* <div className="shadow-three dark:bg-gray-dark mb-10 mt-12 rounded-md bg-white p-6 dark:shadow-none lg:mt-0">
                 <h1 className="mb-8 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight">
